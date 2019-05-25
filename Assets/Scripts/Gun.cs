@@ -7,59 +7,79 @@ public class Gun : VRTK.VRTK_InteractableObject
 {
     public GameObject bullet;
     public float firingSpeed;
+    [SerializeField]
+    public Vector3 grabPos;
+    [SerializeField]
+    public Vector3 grabRot;
+    // public float aimDist;
+    // public GameObject crosshair;
+    [Range(0, 1)]
+    public float shotStrength;
 
-    VRTK_ControllerEvents left;
-    VRTK_ControllerEvents right;
+    bool active;
+    bool nextFrame;
+    VRTK_ControllerReference hand;
+    // Ray aim;
 
-    bool canShoot;
+   //  RaycastHit hit;
 
     // Start is called before the first frame update
     void Start()
     {
-        left = HandRefs.Left;
-        right = HandRefs.Right;
-        canShoot = false;
+        active = false;
+        nextFrame = false;
+        hand = null;
+        // aim = new Ray(transform.position, transform.forward);
+        // crosshair.SetActive(false);
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (!active) { return; }
+
+        if (nextFrame) { SetOnNextFrame(); }
+        //if (Physics.Raycast(aim, out hit, aimDist))
+        //{
+        //    crosshair.transform.position = hit.transform.position;
+        //    crosshair.SetActive(true);
+        //}
+        //else { crosshair.SetActive(false); }
     }
 
     public override void Grabbed(VRTK_InteractGrab currentGrabbingObject = null)
     {
         base.Grabbed(currentGrabbingObject);
 
-        Debug.Log("gun grabbed");
-
-        // GunHolder.PickupGun(this, currentGrabbingObject);
-        // left.TriggerPressed += OnTriggerPress;
-        // right.TriggerPressed += OnTriggerPress;
+        hand = VRTK_ControllerReference.GetControllerReference(currentGrabbingObject.gameObject);
+        Debug.Log(currentGrabbingObject.gameObject.name);
 
         currentGrabbingObject.controllerEvents.TriggerPressed += Shoot;
+        active = true;
+        nextFrame = true;
+    }
+
+    private void SetOnNextFrame()
+    {
+        nextFrame = false;
+        transform.localPosition = grabPos;
+        transform.localRotation = Quaternion.Euler(grabRot);
     }
 
     public override void Ungrabbed(VRTK_InteractGrab previousGrabbingObject = null)
     {
         base.Ungrabbed(previousGrabbingObject);
 
-        Debug.Log("gun dropped");
-
-        // left.TriggerPressed -= OnTriggerPress;
-        // right.TriggerPressed -= OnTriggerPress;
-
+        hand = null;
         previousGrabbingObject.controllerEvents.TriggerPressed -= Shoot;
+        active = false;
     }
-    
-
-    void OnTriggerPress(object sender, ControllerInteractionEventArgs e)
-    {
-        Debug.Log("trigger");
-        // Shoot(); // should only call if subscribed to event
-        // if (canShoot) { Shoot(); }
-    }
-
     
     void Shoot(object sender, ControllerInteractionEventArgs e)
     {
-        Debug.Log("shooting");
-
+        // VRTK_ControllerHaptics.CancelHapticPulse(hand);
         GameObject bul = Instantiate(bullet, transform.position, transform.rotation);
+        // VRTK_ControllerHaptics.TriggerHapticPulse(hand, shotStrength);
     }
     
 }

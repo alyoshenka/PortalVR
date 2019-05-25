@@ -17,7 +17,7 @@ public abstract class DamageableEnity : MonoBehaviour, IDamageable
 
     int currentHealth;
 
-    void Start()
+    protected virtual void Start()
     {
         currentHealth = maxHealth;
     }
@@ -25,6 +25,7 @@ public abstract class DamageableEnity : MonoBehaviour, IDamageable
     public Explosion TakeDamage(int damage)
     {
         currentHealth -= damage;
+
         if(currentHealth <= 0) { OnDeath(); }
         return hitEffect;
     }
