@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     public static int Level { get; private set; }
     public EnemySpawner spawnerInstance;
+    public EnemyGrid gridManager;
     [SerializeField]
     public static EnemySpawner spawner;
 
@@ -16,8 +17,10 @@ public class LevelManager : MonoBehaviour
         spawner = spawnerInstance;
     }
 
-    public static void StartNextLevel()
+    public void StartNextLevel()
     {
+        Level++;
+        gridManager.MakeNextLevel(10, 10);
         spawner.InitLevel();
     }
 }

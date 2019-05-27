@@ -32,6 +32,12 @@ public class Button : ControllableReactor
 
     void StartGame()
     {
-        if (!EnemySpawner.levelGoing) { LevelManager.StartNextLevel(); }
+        if (!EnemySpawner.levelGoing) { GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>().StartNextLevel(); }
+    }
+
+
+    protected override void ValueChanged(object sender, ControllableEventArgs e)
+    {
+        // do nothing
     }
 }

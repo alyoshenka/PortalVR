@@ -26,6 +26,6 @@ public class ScoreKeeper : MonoBehaviour
 
     public void UpdateText()
     {
-        scoreboard.text = "Score: " + score;
+        scoreboard.text = "Score: " + score + "\nLevel: " + LevelManager.Level;
     }
 }

@@ -17,7 +17,7 @@ public class SpawnedEntity : MonoBehaviour
     void Start()
     {
         Active = false;
-        spawnElapsed = 0f;
+        spawnElapsed = Random.Range(0f, spawnInterval);
         spawnCounter = 0;
     }
 
@@ -37,4 +37,5 @@ public class SpawnedEntity : MonoBehaviour
         spawnCounter++;
         if(spawnCounter >= spawnNumber) { Active = false; } // done
     }
+
 }

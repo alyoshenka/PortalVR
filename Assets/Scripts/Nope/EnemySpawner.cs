@@ -27,7 +27,11 @@ public class EnemySpawner : MonoBehaviour
     public void InitLevel()
     {
         levelGoing = true;
-        foreach (SpawnedEntity ent in entities) { ent.Active = true; }
+        foreach (SpawnedEntity ent in entities)
+        {
+            ent.spawnNumber++; // algorithm for difficulty
+            ent.Active = true;
+        }
     }
 
     public static void AddAliveEntity(GameObject go)

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : DamageableEnity
 {
     public enum Type { circling, waving }
-    public enum Stage { shooting, resting, moving }
+    public enum Stage { shooting, resting, circling, arranging }
 
     public int points;
     public Transform target;
@@ -17,12 +17,16 @@ public class Enemy : DamageableEnity
     public float upSpeed = 10f;
     public float upMultiplier = 0.1f;
 
-    public static Stage stage = Stage.moving; // how do we want to control stages
+    [HideInInspector]
+    public static int currentIdx;
+
+    public static Stage stage = Stage.circling; // how do we want to control stages
     public bool IsShooting { get; set; }
 
     float shotElapsed;
     float angle; // deg
     float upVal;
+    Vector3 goalPos;
 
     // holders
     Vector3 newPosition;
@@ -41,11 +45,14 @@ public class Enemy : DamageableEnity
         angle = 0f;
         newPosition = transform.position;
         upVal = 0f;
+        goalPos = EnemyGrid.IntToV3(currentIdx++);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(0)) { stage = Stage.arranging; }
+
         switch (stage)
         {
             case Stage.shooting:
@@ -54,8 +61,11 @@ public class Enemy : DamageableEnity
             case Stage.resting:
                 Rest();
                 break;
-            case Stage.moving:
+            case Stage.circling:
                 Shoot();
+                break;
+            case Stage.arranging:
+                Arrange();
                 break;
             default:
                 Debug.LogError("Invalid State");
@@ -96,8 +106,7 @@ public class Enemy : DamageableEnity
         transform.position = newPosition;
         */
 
-        //transform.Rotate(angle * Time.deltaTime, Vector3.up, Vector3.zero);
-        transform.RotateAround(Vector3.zero, transform.up, speed * Time.deltaTime);
+        //transform.Rotate(angle * Time.deltaTime, Vector3.up, Vector3.zero);        transform.RotateAround(Vector3.zero, transform.up, speed * Time.deltaTime);
         
     }
 
@@ -113,10 +122,23 @@ public class Enemy : DamageableEnity
     public override void OnDeath()
     {
         Instantiate(deathEffect.gameObject, transform.position, transform.rotation);
-        GameObject.FindGameObjectWithTag("ScoreKeeper").GetComponent<ScoreKeeper>().AddPoints(points);
+        GameObject.FindGameObjectWithTag("ScoreKeeper").GetComponent<ScoreKeeper>().AddPoints(points); // change
         // enemies.Remove(this);
         // if(enemies.Count <= 0) { Debug.Log("no more enemies"); }
         EnemySpawner.RemoveAliveEntity(gameObject);
         Destroy(gameObject);        
+    }
+
+    public void Arrange()
+    {
+        if(Vector3.Distance(transform.position, goalPos) > 0.1f)
+        {
+            transform.LookAt(goalPos);
+            transform.position += transform.forward * speed * Time.deltaTime;
+        }
+        else
+        {
+            transform.rotation = Quaternion.identity;
+        }        
     }
 }
