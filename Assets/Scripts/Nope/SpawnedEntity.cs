@@ -33,6 +33,7 @@ public class SpawnedEntity : MonoBehaviour
     {
         GameObject g = Instantiate(spawnObject.gameObject, transform.position, transform.rotation);
         EnemySpawner.AddAliveEntity(g);
+        EnemyGrid.Spawn(g.GetComponent<Enemy>());
         spawnElapsed = 0;
         spawnCounter++;
         if(spawnCounter >= spawnNumber) { Active = false; } // done

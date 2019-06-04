@@ -53,6 +53,8 @@ public class Enemy : DamageableEnity
     {
         if (Input.GetMouseButtonDown(0)) { stage = Stage.arranging; }
 
+        shotElapsed += Time.deltaTime;
+
         switch (stage)
         {
             case Stage.shooting:
@@ -62,7 +64,7 @@ public class Enemy : DamageableEnity
                 Rest();
                 break;
             case Stage.circling:
-                Shoot();
+                Move();
                 break;
             case Stage.arranging:
                 Arrange();
@@ -73,7 +75,7 @@ public class Enemy : DamageableEnity
         }
     }
 
-    void Shoot()
+    void Move()
     {
         switch (type)
         {
@@ -87,6 +89,22 @@ public class Enemy : DamageableEnity
                 Debug.LogError("Invalid State");
                 break;
         }
+    }
+
+    public void Shoot()
+    {
+        // GameObject bul = Instantiate(bullet, transform.position, Quaternion.identity);
+        // bul.transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
+
+        // shotElapsed += Time.deltaTime;
+
+        if (shotElapsed >= shotTimer)
+        {
+            shotElapsed = 0f;
+            GameObject bul = Instantiate(bullet, transform.position, Quaternion.identity);
+            bul.transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
+        }
+ 
     }
 
     void Rest()
@@ -106,7 +124,8 @@ public class Enemy : DamageableEnity
         transform.position = newPosition;
         */
 
-        //transform.Rotate(angle * Time.deltaTime, Vector3.up, Vector3.zero);        transform.RotateAround(Vector3.zero, transform.up, speed * Time.deltaTime);
+        //transform.Rotate(angle * Time.deltaTime, Vector3.up, Vector3.zero);        
+        transform.RotateAround(Vector3.zero, transform.up, speed * Time.deltaTime);
         
     }
 
@@ -134,11 +153,13 @@ public class Enemy : DamageableEnity
         if(Vector3.Distance(transform.position, goalPos) > 0.1f)
         {
             transform.LookAt(goalPos);
-            transform.position += transform.forward * speed * Time.deltaTime;
+            transform.position += transform.forward * (speed / 10) * Time.deltaTime;
         }
         else
         {
             transform.rotation = Quaternion.identity;
-        }        
+            EnemyGrid.MoveToReady(this);
+        }
+        
     }
 }

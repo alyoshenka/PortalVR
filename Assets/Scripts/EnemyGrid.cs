@@ -6,28 +6,51 @@ public class EnemyGrid : MonoBehaviour
 {
     public float offset;
     public GameObject marker;
+    public float shotTimer;
 
     public static Vector3[,] positions;
+    public static List<Enemy> enemies;
+
+    static List<Enemy> waitingEnemies;
+    static List<Enemy> readyEnemies;
+    static Enemy currentEnemy;
+    static int curEnemIdx;
 
     static int height;
     static int width;
+    float shotElapsed;
+    static bool ready;
 
     Vector3 orig;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        enemies = new List<Enemy>();
+        waitingEnemies = new List<Enemy>();
+        readyEnemies = new List<Enemy>();
+        shotElapsed = 0f;
+        ready = false;
+        curEnemIdx = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (ready)
+        {
+            shotElapsed += Time.deltaTime;
+            if(shotElapsed >= shotTimer)
+            {
+                Shoot();
+                shotElapsed = 0f;
+            }
+        }
     }
 
     public void MakeNextLevel(int _width, int _height)
     {
+        enemies.Clear();
         height = _height;
         width = _width;
         orig = transform.position;
@@ -50,8 +73,29 @@ public class EnemyGrid : MonoBehaviour
         int x = tryIdx / width;
         int y = tryIdx % height;
 
-        Debug.Log(x + " " + y);
-
         return positions[y, x];
     }
+
+    public static void MoveToReady(Enemy e)
+    {
+        if (readyEnemies.Contains(e)) { return; }
+
+        readyEnemies.Add(e);
+        waitingEnemies.Remove(e);
+        if (waitingEnemies.Count <= 0) { ready = true; }
+    }
+
+    public static void Spawn(Enemy e)
+    {
+        waitingEnemies.Add(e);
+    }
+
+    static void Shoot()
+    {
+        currentEnemy = readyEnemies[curEnemIdx++];
+        if(curEnemIdx >= readyEnemies.Count) { curEnemIdx = 0; }
+
+        currentEnemy.Shoot();
+    }
+
 }

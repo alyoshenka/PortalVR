@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3693708951409293483}
   - component: {fileID: 3693708951409293492}
   - component: {fileID: 3693708951409293493}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BobbingEntity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,10 +111,10 @@ MonoBehaviour:
     type: 3}
   points: 50
   target: {fileID: 0}
-  bullet: {fileID: 5471524611712054160, guid: 158b8db52cff77c4ba7cd6241d08c7ff, type: 3}
+  bullet: {fileID: 5471524611712054160, guid: b34401348660f544e98636026a7a1f41, type: 3}
   type: 1
   speed: 30
-  shotTimer: 0
+  shotTimer: 1
   radius: 0
   upSpeed: 5
   upMultiplier: 0.01

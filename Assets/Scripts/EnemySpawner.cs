@@ -6,7 +6,6 @@ public class EnemySpawner : MonoBehaviour
 {
     public enum EnemyStage { init, circle, shoot }
     public static EnemyStage enemyStage;
-    public static bool levelGoing;
 
     public List<SpawnedEntity> entities;
 
@@ -18,15 +17,14 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        levelGoing = false;
         aliveEntities = new List<GameObject>();
+        LevelManager.AddEnemyList(aliveEntities);
         // activeEntities = new List<SpawnedEntity>();
         // foreach(SpawnedEntity ent in entities) { ent.Spawner = this; }
     }
 
     public void InitLevel()
     {
-        levelGoing = true;
         foreach (SpawnedEntity ent in entities)
         {
             ent.spawnNumber++; // algorithm for difficulty
@@ -42,6 +40,6 @@ public class EnemySpawner : MonoBehaviour
     public static void RemoveAliveEntity(GameObject go)
     {
         aliveEntities.Remove(go);
-        if(aliveEntities.Count <= 0) { levelGoing = false; }
+        if(aliveEntities.Count <= 0) { LevelManager.RemoveEnemyList(aliveEntities); }
     }
 }

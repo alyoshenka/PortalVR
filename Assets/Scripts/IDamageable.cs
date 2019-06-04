@@ -22,7 +22,7 @@ public abstract class DamageableEnity : MonoBehaviour, IDamageable
         currentHealth = maxHealth;
     }
 
-    public Explosion TakeDamage(int damage)
+    public virtual Explosion TakeDamage(int damage)
     {
         currentHealth -= damage;
 
