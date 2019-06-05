@@ -32,6 +32,7 @@ public class Bullet : MonoBehaviour
         IDamageable dam = other.gameObject.GetComponent<IDamageable>();
         if(null != dam)
         {
+            Debug.Log("damage");
             Explosion otherExpl = dam.TakeDamage(damage);
             Instantiate(otherExpl, transform.position, transform.rotation);
         }
