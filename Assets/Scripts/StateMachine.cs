@@ -1,12 +1,17 @@
 ﻿using UnityEngine;
-using System;
+using System.Collections.Generic;
+
+using VRTK.Controllables;
+using VRTK.Examples;
+
 
 public interface IEnemyState
 {
     void OnEnter();
     void OnUpdate();
     void OnExit();
-    bool ReadyForNext();
+    bool ReadyForNextState();
+    IEnemyState NextState();
 }
 
 public abstract class EnemyState : IEnemyState
@@ -16,13 +21,32 @@ public abstract class EnemyState : IEnemyState
     public abstract void OnEnter();
     public abstract void OnUpdate();
     public abstract void OnExit();
-    public abstract bool ReadyForNext();
+    public abstract bool ReadyForNextState();
+    public IEnemyState NextState()
+    {
+        if (ReadyForNextState())
+        {
+            OnExit();
+            nextState.OnEnter();
+            return nextState;
+        }
+        else { return this; }
+       
+    }
 }
 
 #region States
 
 public class ProcessState : EnemyState
 {
+    ControllableReactor readyButton;
+
+    public void AddReadyButton(ControllableReactor _readyButton)
+    {
+        readyButton = _readyButton;
+        readyButton.controllable.MaxLimitReached += Test;
+    }
+
     public override void OnEnter()
     {
         Debug.Log("enter process");
@@ -38,14 +62,26 @@ public class ProcessState : EnemyState
         Debug.Log("exit process");
     }
 
-    public override bool ReadyForNext()
+    public override bool ReadyForNextState()
     {
-        throw new System.NotImplementedException();
+        return Input.GetMouseButtonDown(1);
+    }
+
+    public void Test(object sender, ControllableEventArgs e)
+    {
+        Debug.Log("worked");
     }
 }
 
 public class SpawnState : EnemyState
 {
+    List<Spawner> spawners;
+
+    public SpawnState(List<Spawner> _spawners)
+    {
+
+    }
+
     public override void OnEnter()
     {
         Debug.Log("enter spawn");
@@ -61,15 +97,20 @@ public class SpawnState : EnemyState
         Debug.Log("exit spawn");
     }
 
-    public override bool ReadyForNext()
+    public override bool ReadyForNextState()
     {
-        throw new System.NotImplementedException();
+        return Input.GetMouseButtonDown(1);
     }
 }
 
 
 public class ArrangeState : EnemyState
 {
+    public ArrangeState()
+    {
+
+    }
+
     public override void OnEnter()
     {
         Debug.Log("enter arrange");
@@ -85,15 +126,17 @@ public class ArrangeState : EnemyState
         Debug.Log("exit arrange");
     }
 
-    public override bool ReadyForNext()
+    public override bool ReadyForNextState()
     {
-        throw new System.NotImplementedException();
+        return Input.GetMouseButtonDown(1);
     }
 }
 
 
 public class FireState : EnemyState
 {
+    public FireState(List<Enemy> es) { }
+
     public override void OnEnter()
     {
         Debug.Log("enter fire");
@@ -109,40 +152,11 @@ public class FireState : EnemyState
         Debug.Log("exit fire");
     }
 
-    public override bool ReadyForNext()
+    public override bool ReadyForNextState()
     {
-        throw new System.NotImplementedException();
+        return Input.GetMouseButtonDown(1);
     }
 }
 
 #endregion
 
-public class EnemyStateMachine
-{
-    IEnemyState currentState;
-    ProcessState process;
-    SpawnState spawn;
-    ArrangeState arrange;
-    FireState fire;
-
-    // List<Enemy> enemies;
-
-    public EnemyStateMachine()
-    {
-        process = new ProcessState();
-        spawn = new SpawnState();
-        arrange = new ArrangeState();
-        fire = new FireState();
-
-        process.nextState = spawn;
-        spawn.nextState = arrange;
-        arrange.nextState = fire;
-        fire.nextState = process;
-        currentState = process;
-    }
-
-    public void RegisterEnemy(Enemy e)
-    {
-
-    }
-}

@@ -6,32 +6,28 @@ using VRTK.Examples;
 
 public class Button : ControllableReactor
 {
-    public enum ButtonAction { spawn, arrange };
+    /*
+    public delegate void PressEvent(object sender, ControllableEventArgs e);
+    public event ControllableEventHandler ButtonPress;
 
-    public ButtonAction action;
+    public void Initialize()
+    {
+        controllable.MaxLimitReached += ButtonPress;
+    }
 
+    /*
     protected override void MaxLimitReached(object sender, ControllableEventArgs e)
     {
-        switch (action)
-        {
-            case ButtonAction.spawn:
-                StartGame();
-                break;
-            case ButtonAction.arrange:
-                Arrange();
-                break;
-            default:
-                Debug.LogError("invalid state");
-                break;
-        }
+        if (null == ButtonPress) { Debug.Log("null"); }
+        else { ButtonPress(sender, e); }
     }
        
-    /*
+    
     protected override void MinLimitReached(object sender, ControllableEventArgs e)
     {
         Debug.Log("button min");
     }
-    */
+    
 
     void StartGame()
     {
@@ -56,4 +52,5 @@ public class Button : ControllableReactor
     {
         // do nothing
     }
+    */
 }

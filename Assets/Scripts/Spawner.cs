@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    /*
     [Tooltip("The type of enemy to spawn")]
     public Test enemy;
     [Tooltip("The number of enemies to spawn")]
@@ -32,7 +33,7 @@ public class Spawner : MonoBehaviour
 
         switch (stateMachine.stage)
         {
-            case EnemyStateMachine_bad.State.circle:
+            case EnemyStateMachine.State.circle:
                 SpawnEnemy();
                 break;
             case EnemyStateMachine_bad.State.arrange:
@@ -51,7 +52,7 @@ public class Spawner : MonoBehaviour
         if(spawnElapsed >= spawnTime) { SpawnEnemy(); }
     }
 
-    public void StartSpawning(EnemyStateMachine_bad _stateMachine)
+    public void StartSpawning(EnemyStateMachine _stateMachine)
     {
         stateMachine = _stateMachine;
         isSpawning = true;
@@ -80,4 +81,5 @@ public class Spawner : MonoBehaviour
     {
         foreach (Test e in enemies) { e.Arrange(); }
     }
+    */
 }
