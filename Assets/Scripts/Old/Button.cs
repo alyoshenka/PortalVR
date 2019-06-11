@@ -6,7 +6,7 @@ using VRTK.Examples;
 
 public class Button : ControllableReactor
 {
-    public enum ButtonAction { start };
+    public enum ButtonAction { spawn, arrange };
 
     public ButtonAction action;
 
@@ -14,8 +14,11 @@ public class Button : ControllableReactor
     {
         switch (action)
         {
-            case ButtonAction.start:
+            case ButtonAction.spawn:
                 StartGame();
+                break;
+            case ButtonAction.arrange:
+                Arrange();
                 break;
             default:
                 Debug.LogError("invalid state");
@@ -33,6 +36,11 @@ public class Button : ControllableReactor
     void StartGame()
     {
         LevelManager.TryNextLevel();
+    }
+
+    void Arrange()
+    {
+        Enemy.stage = Enemy.Stage.arranging;
     }
 
     private void Update()

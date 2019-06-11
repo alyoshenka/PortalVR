@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : DamageableEnity
 {
     public enum Type { circling, waving }
-    public enum Stage { shooting, resting, circling, arranging }
+    public enum Stage { shooting, /*resting,*/ circling, arranging }
 
     public int points;
     public Transform target;
@@ -20,7 +20,7 @@ public class Enemy : DamageableEnity
     [HideInInspector]
     public static int currentIdx;
 
-    public static Stage stage = Stage.circling; // how do we want to control stages
+    public static Stage stage = Stage.circling;
     public bool IsShooting { get; set; }
 
     float shotElapsed;
@@ -31,15 +31,10 @@ public class Enemy : DamageableEnity
     // holders
     Vector3 newPosition;
 
-    // public static List<Enemy> enemies;
-
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-
-        // if(null == enemies) { enemies = new List<Enemy>(); }
-        // enemies.Add(this);
 
         shotElapsed = 0f;
         angle = 0f;
@@ -60,9 +55,11 @@ public class Enemy : DamageableEnity
             case Stage.shooting:
                 Shoot();
                 break;
+            /*
             case Stage.resting:
                 Rest();
                 break;
+            */
             case Stage.circling:
                 Move();
                 break;
@@ -93,11 +90,6 @@ public class Enemy : DamageableEnity
 
     public void Shoot()
     {
-        // GameObject bul = Instantiate(bullet, transform.position, Quaternion.identity);
-        // bul.transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
-
-        // shotElapsed += Time.deltaTime;
-
         if (shotElapsed >= shotTimer)
         {
             shotElapsed = 0f;
@@ -107,26 +99,11 @@ public class Enemy : DamageableEnity
  
     }
 
-    void Rest()
-    {
-
-    }
+    void Rest() { }
 
     void Circle()
-    {
-        // figure out best way to do this
-        /*
-        angle += Time.deltaTime;
-        newPosition.x += Mathf.Cos(angle * Mathf.Deg2Rad * radius);
-        newPosition.z += Mathf.Sin(angle * Mathf.Deg2Rad * radius);
-        newPosition = newPosition.normalized;
-        newPosition *= speed;
-        transform.position = newPosition;
-        */
-
-        //transform.Rotate(angle * Time.deltaTime, Vector3.up, Vector3.zero);        
-        transform.RotateAround(Vector3.zero, transform.up, speed * Time.deltaTime);
-        
+    {    
+        transform.RotateAround(Vector3.zero, transform.up, speed * Time.deltaTime);       
     }
 
     void Wave()
@@ -142,8 +119,6 @@ public class Enemy : DamageableEnity
     {
         Instantiate(deathEffect.gameObject, transform.position, transform.rotation);
         GameObject.FindGameObjectWithTag("ScoreKeeper").GetComponent<ScoreKeeper>().AddPoints(points); // change
-        // enemies.Remove(this);
-        // if(enemies.Count <= 0) { Debug.Log("no more enemies"); }
         EnemySpawner.RemoveAliveEntity(gameObject);
         Destroy(gameObject);        
     }
@@ -159,7 +134,11 @@ public class Enemy : DamageableEnity
         {
             transform.rotation = Quaternion.identity;
             EnemyGrid.MoveToReady(this);
-        }
-        
+        }       
+    }
+
+    public void MoveToArranging()
+    {
+        stage = Stage.arranging;
     }
 }

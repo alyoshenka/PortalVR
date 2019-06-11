@@ -15,6 +15,7 @@ public class Player : DamageableEnity
     public float damageLerp;    
     [Tooltip("The radius of the head collider (0.1f)")]
     public float headRadius;
+    public Image healthBar;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -37,6 +38,7 @@ public class Player : DamageableEnity
         StartCoroutine("DamageFlash");
 
         base.TakeDamage(damage);
+        healthBar.fillAmount = 1.0f * currentHealth / maxHealth;
         return damageExplosion;
     }
 
