@@ -3,83 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
-{
-    /*
+{   
     [Tooltip("The type of enemy to spawn")]
-    public Test enemy;
+    public Enemy enemy;
     [Tooltip("The number of enemies to spawn")]
     public int enemyCount;
     [Tooltip("The rate at which to spawn enemies")]
     public float spawnTime;
 
-    EnemyStateMachine_bad stateMachine;
-    bool isSpawning;
+    public SpawnState spawnState { private get; set; }
+
     int spawnedCount;
     float spawnElapsed;
-    List<Test> enemies;
 
-    // Start is called before the first frame update
     void Start()
     {
-        isSpawning = false;
-        spawnElapsed = 0;
-        enemies = new List<Test>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (!isSpawning) { return; }
-
-        switch (stateMachine.stage)
-        {
-            case EnemyStateMachine.State.circle:
-                SpawnEnemy();
-                break;
-            case EnemyStateMachine_bad.State.arrange:
-                UpdateEnemies();
-                break;
-            case EnemyStateMachine_bad.State.fire:
-                break;
-            case EnemyStateMachine_bad.State.process:
-                break;
-            default:
-                Debug.LogError("Invalid state");
-                break;
-        }
-
-        spawnElapsed += Time.deltaTime;
-        if(spawnElapsed >= spawnTime) { SpawnEnemy(); }
-    }
-
-    public void StartSpawning(EnemyStateMachine _stateMachine)
-    {
-        stateMachine = _stateMachine;
-        isSpawning = true;
-    }
-
-    void SpawnEnemy()
-    {
+        spawnedCount = 0;
         spawnElapsed = 0f;
-        spawnedCount++;        
+    }
 
-        GameObject newEnemy = Instantiate(enemy.gameObject, transform.position, transform.rotation);
-        Test enemyScript = newEnemy.GetComponent<Test>();
-        enemies.Add(enemyScript);
-        stateMachine.AddEnemy(enemyScript);
-        stateMachine.AddToWaiting(enemyScript);
-
+    public void Spawn(float deltaTime)
+    {
         if (spawnedCount >= enemyCount)
         {
-            isSpawning = false;
-            // remove spawner from active list
-            stateMachine.MoveToWaiting(this);
+            spawnState.RemoveSpawner();
+            return;
         }
+
+        spawnElapsed += deltaTime;
+        if (spawnElapsed >= spawnTime)
+        {
+            // Spawn();
+            Enemy e = Instantiate(enemy.gameObject, transform.position, Quaternion.identity).GetComponent<Enemy>();
+            Enemy.circlingEnemies.Add(e);
+
+            spawnedCount++;
+            spawnTime = 0f;
+        }        
     }
 
-    void UpdateEnemies()
+    public void Reset()
     {
-        foreach (Test e in enemies) { e.Arrange(); }
+        spawnedCount = 0;
     }
-    */
 }

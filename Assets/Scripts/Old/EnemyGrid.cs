@@ -95,7 +95,7 @@ public class EnemyGrid : MonoBehaviour
         currentEnemy = readyEnemies[curEnemIdx++];
         if(curEnemIdx >= readyEnemies.Count) { curEnemIdx = 0; }
 
-        currentEnemy.Shoot();
+        currentEnemy.Shoot(Time.deltaTime);
     }
 
 }

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Enemy : DamageableEnity
-{
-    public enum Type { circling, waving }
-    public enum Stage { shooting, /*resting,*/ circling, arranging }
+        
+{    public enum Type { circling, waving }
 
     public int points;
     public Transform target;
@@ -20,13 +20,18 @@ public class Enemy : DamageableEnity
     [HideInInspector]
     public static int currentIdx;
 
-    public static Stage stage = Stage.circling;
+    [SerializeField]
+    public Vector3 goalPos;
+
+    public static List<Enemy> enemies;
+    public static List<Enemy> circlingEnemies;
+
     public bool IsShooting { get; set; }
+    public bool InPosition { get; private set; }
 
     float shotElapsed;
     float angle; // deg
-    float upVal;
-    Vector3 goalPos;
+    float upVal;   
 
     // holders
     Vector3 newPosition;
@@ -34,62 +39,35 @@ public class Enemy : DamageableEnity
     // Start is called before the first frame update
     protected override void Start()
     {
-        base.Start();
+        base.Start();       
+        enemies.Add(this);
+        Debug.Log(enemies.Count);
 
         shotElapsed = 0f;
         angle = 0f;
         newPosition = transform.position;
         upVal = 0f;
-        goalPos = EnemyGrid.IntToV3(currentIdx++);
+        goalPos = Vector3.zero;
+        InPosition = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void Initialize()
     {
-        if (Input.GetMouseButtonDown(0)) { stage = Stage.arranging; }
-
-        shotElapsed += Time.deltaTime;
-
-        switch (stage)
-        {
-            case Stage.shooting:
-                Shoot();
-                break;
-            /*
-            case Stage.resting:
-                Rest();
-                break;
-            */
-            case Stage.circling:
-                Move();
-                break;
-            case Stage.arranging:
-                Arrange();
-                break;
-            default:
-                Debug.LogError("Invalid State");
-                break;
-        }
+        if (null == enemies) { enemies = new List<Enemy>(); }
+        else { enemies.Clear(); }
+        if (null == circlingEnemies) { circlingEnemies = new List<Enemy>(); }
+        else { circlingEnemies.Clear(); }
     }
 
-    void Move()
+    public void Move(float deltaTime)
     {
-        switch (type)
-        {
-            case Type.circling:
-                Circle();
-                break;
-            case Type.waving:
-                Wave();
-                break;
-            default:
-                Debug.LogError("Invalid State");
-                break;
-        }
+       if(type == Type.circling) { Circle(); }
+       else { Wave(); }
     }
 
-    public void Shoot()
+    public void Shoot(float dt)
     {
+        shotElapsed += dt;
         if (shotElapsed >= shotTimer)
         {
             shotElapsed = 0f;
@@ -119,7 +97,7 @@ public class Enemy : DamageableEnity
     {
         Instantiate(deathEffect.gameObject, transform.position, transform.rotation);
         GameObject.FindGameObjectWithTag("ScoreKeeper").GetComponent<ScoreKeeper>().AddPoints(points); // change
-        EnemySpawner.RemoveAliveEntity(gameObject);
+        enemies.Remove(this);
         Destroy(gameObject);        
     }
 
@@ -133,12 +111,8 @@ public class Enemy : DamageableEnity
         else
         {
             transform.rotation = Quaternion.identity;
-            EnemyGrid.MoveToReady(this);
+            InPosition = true;
+            circlingEnemies.Remove(this);
         }       
-    }
-
-    public void MoveToArranging()
-    {
-        stage = Stage.arranging;
     }
 }

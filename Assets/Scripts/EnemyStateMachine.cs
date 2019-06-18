@@ -17,37 +17,31 @@ public class EnemyStateMachine : MonoBehaviour
     List<Enemy> enemies;
     List<Spawner> spawners;
 
-    public EnemyStateMachine()
-    {
-        enemies = new List<Enemy>();
-        spawners = new List<Spawner>();
+    void Start()
+    { 
+        enemies = new List<Enemy>(); // not sure
+        spawners = new List<Spawner>(FindObjectsOfType<Spawner>());
 
         process = new ProcessState();
         spawn = new SpawnState(spawners);
-        arrange = new ArrangeState();
+        arrange = new ArrangeState(FindObjectOfType<GridManager>());
         fire = new FireState(enemies);
 
-        if(null == processButton) { Debug.Log("fbhasdipgh"); }
-        process.AddReadyButton(processButton);
+        if (null == processButton) { Debug.Log("no process button"); }
+        else { process.AddReadyButton(processButton); }
 
         process.nextState = spawn;
         spawn.nextState = arrange;
         arrange.nextState = fire;
         fire.nextState = process;
-        currentState = process;
 
-        if(null == currentState) { Debug.LogError("no"); }
+        currentState = process;
     }
 
     void Update()
     {
-        /*
-        if (null == currentState) { Debug.LogWarning("ummmm"); }
-        else { currentState.OnUpdate();
-            currentState = currentState.NextState();
-        }
-        */
-
+        currentState.OnUpdate();
+        currentState = currentState.NextState();
     }
 
     public void RegisterEnemy(Enemy e)
