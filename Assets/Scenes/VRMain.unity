@@ -1214,7 +1214,8 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 1.83672e-40, w: -3.11e-43}
+  m_BoundingSphereOverride: {x: 1.1280481e+27, y: 6.271143e-39, z: 2.4023743e+20,
+    w: 805.6321}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -3025,6 +3026,12 @@ MonoBehaviour:
   swapEpsilon: 0.1
   swapTime: 100
   swapInterval: 1
+  zoomTime: 50
+  zoomInterval: 2
+  zoomRotateSpeed: 50
+  zoomMoveSpeed: 10
+  zoomEpsilon: 0.1
+  zoomRadius: 3
 --- !u!1 &1303364806
 GameObject:
   m_ObjectHideFlags: 0
@@ -3106,7 +3113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 4834593854670596139, guid: 35d9d6b5dd66bc3478ef66b859e17332, type: 3}
-  enemyCount: 10
+  enemyCount: 50
   spawnTime: 0.5
 --- !u!1001 &1378405645
 PrefabInstance:

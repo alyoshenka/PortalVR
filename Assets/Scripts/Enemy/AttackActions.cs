@@ -20,3 +20,23 @@ public struct SwapHolder
         swapStage = 1;
     }
 }
+
+public struct ZoomHolder
+{
+    public Transform entity;
+    public float radius;
+    public Vector3 center, origPos;
+    public float curDist;
+    public int zoomStage;
+    public int cnt;
+
+    public void Initialize(Transform _ent, float rad, Vector3 cent)
+    {
+        entity = _ent;
+        origPos = entity.position;
+        radius = rad;
+        center = cent;
+        zoomStage = 1;
+        cnt = 0;
+    }
+}

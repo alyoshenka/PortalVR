@@ -16,10 +16,20 @@ public class EnemyAttackManager : MonoBehaviour
     [Space(10)]
     public float swapTime;
     public float swapInterval;
-    float swapTimeElapsed;
-    float swapIntervalElapsed;
+
+    List<SwapHolder> swaps;
+    float swapTimeElapsed, swapIntervalElapsed;
 
     [Header("Zoom")]
+    public float zoomTime;
+    public float zoomInterval;
+    public float zoomRotateSpeed;
+    public float zoomMoveSpeed;
+    public float zoomEpsilon;
+    public float zoomRadius;
+
+    List<ZoomHolder> zooms;
+    float zoomTimeElapsed, zoomIntervalElapsed;
 
     [Header("Circle")]
 
@@ -29,20 +39,20 @@ public class EnemyAttackManager : MonoBehaviour
     Attack currentAttack;
 
     // I'm sorry this script is so gross
-    #region Holders 
-
-    List<SwapHolder> swaps;
-
-    #endregion
 
     public void Initialize()
     {
         attackCount = 3;
+
         if(null != swaps) { swaps.Clear(); }
         else { swaps = new List<SwapHolder>(); }
+        if (null != zooms) { zooms.Clear(); }
+        else { zooms = new List<ZoomHolder>(); }
+
         currentAttack = ChooseRandomAttack();
 
         swapTimeElapsed = swapIntervalElapsed = 0f;
+        zoomTimeElapsed = zoomIntervalElapsed = 0f;
     }
 
     public void UpdateAttacks()
@@ -59,6 +69,7 @@ public class EnemyAttackManager : MonoBehaviour
             case Attack.circle:
                 break;
             case Attack.zoom:
+                ZoomUpdate();
                 break;
             default:
                 Debug.LogError("Invalid state");
@@ -70,7 +81,7 @@ public class EnemyAttackManager : MonoBehaviour
     Attack ChooseRandomAttack()
     {
         // Attack newAttack = (Attack)Random.Range(0, attackCount);
-        Attack newAttack = Attack.swap;
+        Attack newAttack = Attack.zoom;
         switch (newAttack)
         {
             case Attack.swap:
@@ -79,6 +90,7 @@ public class EnemyAttackManager : MonoBehaviour
             case Attack.circle:
                 break;
             case Attack.zoom:
+                ZoomInit();
                 break;
             default:
                 Debug.LogError("Invalid state");
@@ -87,7 +99,7 @@ public class EnemyAttackManager : MonoBehaviour
         return newAttack;
     }
 
-    #region Attacks
+    #region Swap
 
     void SwapInit()
     {
@@ -100,10 +112,10 @@ public class EnemyAttackManager : MonoBehaviour
         swapIntervalElapsed += Time.deltaTime;
         swapTimeElapsed += Time.deltaTime;
 
-        if(swapTimeElapsed >= swapTime)
-        {
-            return swaps.Count == 0;
-        }
+
+        for (int i = 0; i < swaps.Count; i++) { swaps[i] = Swap(swaps[i]); }
+        swaps.RemoveAll(s => s.swapStage > 5);
+        if (swapTimeElapsed >= swapTime) { return swaps.Count == 0; }
 
         if(swapIntervalElapsed >= swapInterval)
         {
@@ -145,17 +157,6 @@ public class EnemyAttackManager : MonoBehaviour
             swaps.Add(swap);
         }
 
-        
-        for(int i = 0; i < swaps.Count; i++) // whyyyyyyy
-        {
-            //SwapHolder s = Swap(swaps[i]);
-            //if(s.swapStage > 5) { swaps.Remove(s); }
-            //else { swaps[i] = s; }
-            swaps[i] = Swap(swaps[i]);
-        }
-
-        swaps.RemoveAll(s => s.swapStage > 5);
-
         return false;
     }
 
@@ -170,8 +171,8 @@ public class EnemyAttackManager : MonoBehaviour
             s.ent1.GetComponent<Renderer>().material.color = Color.red;
             s.ent2.GetComponent<Renderer>().material.color = Color.red;
 
-            s.ent1.Rotate(new Vector3(0, 180, 0));
-            s.ent2.Rotate(new Vector3(0, 180, 0));
+            s.ent1.rotation = Quaternion.identity;
+            s.ent2.rotation = Quaternion.identity;
 
             s.swapStage = 6;
         }
@@ -220,9 +221,89 @@ public class EnemyAttackManager : MonoBehaviour
 
     }
 
-    bool Zoom()
+    #endregion
+
+    void ZoomInit()
     {
-        return true;
+        zoomTimeElapsed = zoomIntervalElapsed = 0f;
+        zooms.Clear();
+    }
+
+    bool ZoomUpdate()
+    {
+        zoomTimeElapsed += Time.deltaTime;
+        zoomIntervalElapsed += Time.deltaTime;
+
+        for (int i = 0; i < zooms.Count; i++) { zooms[i] = Zoom(zooms[i]); }
+        zooms.RemoveAll(z => z.zoomStage > 3);
+        if (zoomTimeElapsed >= zoomTime) { return zooms.Count == 0; }
+
+        if(zoomIntervalElapsed >= zoomInterval)
+        {
+            zoomIntervalElapsed = 0f;
+
+            Transform t;
+            bool contains;
+            do
+            {
+                t = Enemy.enemies[Random.Range(0, Enemy.enemies.Count - 1)].transform;
+                contains = false;
+                foreach (ZoomHolder z in zooms)
+                {
+                    if (t == z.entity)
+                    {
+                        contains = true;
+                        break;
+                    }
+                }
+            } while (contains);
+
+            ZoomHolder zoom = new ZoomHolder();
+            zoom.Initialize(t, zoomRadius, FindObjectOfType<Player>().transform.position);
+            zooms.Add(zoom);
+        }
+
+        return false;
+    }
+
+    ZoomHolder Zoom(ZoomHolder z)
+    {
+        if (z.zoomStage > 3) { Debug.Log(4); }
+        else if (z.zoomStage > 2)
+        {
+            Debug.Log(3);
+
+            z.entity.LookAt(z.origPos);
+            z.entity.position += z.entity.forward * zoomMoveSpeed * Time.deltaTime;
+            if (Vector3.Distance(z.entity.position, z.origPos) <= zoomEpsilon)
+            {
+                z.zoomStage = 4;
+                z.entity.rotation = Quaternion.identity;
+            }
+        }
+        else if (z.zoomStage > 1)
+        {
+            Debug.Log(2);
+
+            z.entity.RotateAround(z.center, z.entity.up, zoomRotateSpeed * Time.deltaTime);
+            z.cnt++;
+            if (z.cnt > 30 && Vector3.Distance(z.entity.position, z.origPos) <= z.curDist + zoomEpsilon) { z.zoomStage = 3; }
+        }
+        else
+        {
+            Debug.Log(1);
+
+            z.entity.LookAt(z.center);
+            z.entity.position += z.entity.forward * zoomMoveSpeed * Time.deltaTime;
+            if (Vector3.Distance(z.entity.position, z.center) <= z.radius + zoomEpsilon)
+            {
+                z.entity.rotation = Quaternion.identity;
+                z.curDist = Vector3.Distance(z.entity.position, z.origPos);
+                z.zoomStage = 2;
+            }
+        }
+
+        return z;
     }
 
     bool Circle()
@@ -230,7 +311,6 @@ public class EnemyAttackManager : MonoBehaviour
         return true;
     }
 
-    #endregion
 }
 
 
