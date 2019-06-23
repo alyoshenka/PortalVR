@@ -146,12 +146,15 @@ public class EnemyAttackManager : MonoBehaviour
         }
 
         
-        for(int i = 0; i < swaps.Count - 1; i++) // whyyyyyyy
+        for(int i = 0; i < swaps.Count; i++) // whyyyyyyy
         {
-            SwapHolder s = Swap(swaps[i]);
-            if(s.swapStage > 5) { swaps.Remove(s); }
-            else { swaps[i] = s; }
+            //SwapHolder s = Swap(swaps[i]);
+            //if(s.swapStage > 5) { swaps.Remove(s); }
+            //else { swaps[i] = s; }
+            swaps[i] = Swap(swaps[i]);
         }
+
+        swaps.RemoveAll(s => s.swapStage > 5);
 
         return false;
     }
