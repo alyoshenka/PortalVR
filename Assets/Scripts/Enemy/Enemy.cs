@@ -41,7 +41,6 @@ public class Enemy : DamageableEnity
     {
         base.Start();       
         enemies.Add(this);
-        Debug.Log(enemies.Count);
 
         shotElapsed = 0f;
         angle = 0f;

@@ -158,17 +158,24 @@ public class ArrangeState : EnemyState
 
 public class FireState : EnemyState
 {
-    public FireState(List<Enemy> es) { }
+    EnemyAttackManager eam;
+
+    public FireState()
+    {
+        eam = GameObject.FindObjectOfType<EnemyAttackManager>();
+    }
 
     public override void OnEnter()
     {
         Debug.Log("enter fire");
+        eam.Initialize();
     }
 
     public override void OnUpdate()
     {
         float t = Time.deltaTime;
-        foreach(Enemy e in Enemy.enemies) { e.Shoot(t); }
+        // foreach(Enemy e in Enemy.enemies) { e.Shoot(t); }
+        eam.UpdateAttacks();
     }
 
     public override void OnExit()

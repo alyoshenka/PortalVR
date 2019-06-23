@@ -25,7 +25,7 @@ public class EnemyStateMachine : MonoBehaviour
         process = new ProcessState();
         spawn = new SpawnState(spawners);
         arrange = new ArrangeState(FindObjectOfType<GridManager>());
-        fire = new FireState(enemies);
+        fire = new FireState();
 
         if (null == processButton) { Debug.Log("no process button"); }
         else { process.AddReadyButton(processButton); }
