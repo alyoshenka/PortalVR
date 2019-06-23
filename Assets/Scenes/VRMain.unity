@@ -3020,18 +3020,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cda175f231dc1b240b9bfd7569932c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swapTime: 5
+  swapInterval: 1
   swapSpeed: 4
   swapDepth: 1
   swapDepthDifference: 1
   swapEpsilon: 0.1
-  swapTime: 100
-  swapInterval: 1
-  zoomTime: 50
-  zoomInterval: 2
-  zoomRotateSpeed: 50
-  zoomMoveSpeed: 10
+  circleTime: 5
+  circleInterval: 1
+  circleRotateSpeed: 100
+  circleMoveSpeed: 5
+  circleEpsilon: 0.1
+  circleRadius: 4
+  zoomTime: 5
+  zoomInterval: 1
+  zoomRadius: 2
+  zoomSpeed: 5
+  zoomWait: 2
   zoomEpsilon: 0.1
-  zoomRadius: 3
 --- !u!1 &1303364806
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,13 +21,13 @@ public struct SwapHolder
     }
 }
 
-public struct ZoomHolder
+public struct CircleHolder
 {
     public Transform entity;
     public float radius;
     public Vector3 center, origPos;
     public float curDist;
-    public int zoomStage;
+    public int circleStage;
     public int cnt;
 
     public void Initialize(Transform _ent, float rad, Vector3 cent)
@@ -36,7 +36,22 @@ public struct ZoomHolder
         origPos = entity.position;
         radius = rad;
         center = cent;
-        zoomStage = 1;
+        circleStage = 1;
         cnt = 0;
+    }
+}
+
+public struct ZoomHolder
+{
+    public Transform entity;
+    public Vector3 center, origPos;
+    public float waitElapsed;
+    public int zoomStage;
+
+    public void Initialize(Transform ent, Vector3 cent)
+    {
+        entity = ent;
+        center = cent;
+        origPos = entity.position;
     }
 }
