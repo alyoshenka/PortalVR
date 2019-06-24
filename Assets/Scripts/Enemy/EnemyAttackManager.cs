@@ -44,6 +44,8 @@ public class EnemyAttackManager : MonoBehaviour
     List<ZoomHolder> zooms;
     float zoomTimeElapsed, zoomIntervalElapsed;
 
+    public List<Transform> toRemove;
+
     #endregion
 
     int attackCount;
@@ -51,16 +53,21 @@ public class EnemyAttackManager : MonoBehaviour
 
     // I'm sorry this script is so gross
 
-    public void Initialize()
+    void Start()
     {
         attackCount = 3;
 
-        if(null != swaps) { swaps.Clear(); }
-        else { swaps = new List<SwapHolder>(); }
-        if (null != circles) { circles.Clear(); }
-        else { circles = new List<CircleHolder>(); }
-        if (null != zooms) { zooms.Clear(); }
-        else { zooms = new List<ZoomHolder>(); }
+        circles = new List<CircleHolder>();
+        swaps = new List<SwapHolder>();
+        zooms = new List<ZoomHolder>();
+        toRemove = new List<Transform>();
+    }
+
+    public void Initialize()
+    {
+        circles.Clear();
+        swaps.Clear();
+        zooms.Clear();
 
         currentAttack = ChooseRandomAttack();
 
@@ -75,6 +82,7 @@ public class EnemyAttackManager : MonoBehaviour
 
     bool RunState()
     {
+        // foreach (Transform t in toRemove) { RemoveAll(t); }
         switch (currentAttack)
         {
             case Attack.swap:
@@ -87,12 +95,18 @@ public class EnemyAttackManager : MonoBehaviour
                 Debug.LogError("Invalid state");
                 break;
         }
+        toRemove.Clear();
         return false;
     }
 
     Attack ChooseRandomAttack()
     {
-        Attack newAttack = (Attack)Random.Range(0, attackCount);
+        int prevA = (int)currentAttack;
+        int newA;
+        do { newA = Random.Range(0, attackCount); }
+        while (newA == prevA);
+        Attack newAttack = (Attack)newA;
+        newAttack = Attack.swap;
         switch (newAttack)
         {
             case Attack.swap:
@@ -118,6 +132,8 @@ public class EnemyAttackManager : MonoBehaviour
     {
         swapTimeElapsed = swapIntervalElapsed = 0f;
         swaps.Clear();
+
+        swapIntervalElapsed = swapInterval;
     }
 
     // return whether state is over
@@ -125,7 +141,6 @@ public class EnemyAttackManager : MonoBehaviour
     {
         swapIntervalElapsed += Time.deltaTime;
         swapTimeElapsed += Time.deltaTime;
-
 
         for (int i = 0; i < swaps.Count; i++) { swaps[i] = Swap(swaps[i]); }
         swaps.RemoveAll(s => s.swapStage > 5);
@@ -171,65 +186,42 @@ public class EnemyAttackManager : MonoBehaviour
             swaps.Add(swap);
         }
 
+
         return false;
     }
 
     SwapHolder Swap(SwapHolder s)
     {
-        if (s.swapStage > 5) { Debug.Log("Invalid"); }
+        Debug.Log(s.swapStage);
+        if (s.swapStage > 5) { Debug.LogWarning("Invalid stage"); }
         else if(s.swapStage > 4)
         {
-            s.ent1.GetComponent<Renderer>().material.color = Color.red;
-            s.ent2.GetComponent<Renderer>().material.color = Color.red;
-
-            s.ent1.rotation = Quaternion.identity;
-            s.ent2.rotation = Quaternion.identity;
+            if (null != s.ent1) { s.ent1.rotation = Quaternion.identity; }
+            if (null != s.ent2) { s.ent2.rotation = Quaternion.identity; }
 
             s.swapStage = 6;
         }
         else if(s.swapStage > 3)
         {
-            s.ent1.LookAt(s.ent2pos);
-            s.ent1.position += s.ent1.forward * swapSpeed * Time.deltaTime;
-            s.ent2.LookAt(s.ent1pos);
-            s.ent2.position += s.ent2.forward * swapSpeed * Time.deltaTime;
-
-            if(Vector3.Distance(s.ent1.position, s.ent2pos) < swapEpsilon
-                && Vector3.Distance(s.ent2.position, s.ent1pos) < swapEpsilon)
+            if (s.Four(s.ent1, s.ent2pos, swapSpeed, swapEpsilon)
+                && s.Four(s.ent2, s.ent1pos, swapSpeed, swapEpsilon))
             { s.swapStage = 5; }
         }
         else if(s.swapStage > 2)
         {
-            s.ent1.LookAt(s.ent2forward);
-            s.ent2.LookAt(s.ent1forward);
-            s.ent1.position += s.ent1.forward * swapSpeed * Time.deltaTime;
-            s.ent2.position += s.ent2.forward * swapSpeed * Time.deltaTime;
-
-            if(Vector3.Distance(s.ent2.position, s.ent1forward) < swapEpsilon 
-                && Vector3.Distance(s.ent1.position, s.ent2forward) < swapEpsilon)
-            { s.swapStage = 4; }
+            if (s.Three(s.ent1, s.ent2forward, swapSpeed, swapEpsilon)
+                && s.Three(s.ent2, s.ent1forward, swapSpeed, swapEpsilon))
+            { s.swapStage = 4; }            
         }
         else if(s.swapStage > 1)
         {
-            s.ent2.position += s.ent2.forward * Time.deltaTime * swapSpeed;
-            s.ent1.position += s.ent1.forward * Time.deltaTime * swapSpeed;
-
-            if(Vector3.Distance(s.ent1.position, s.ent1pos) > swapDepth 
-                && Vector3.Distance(s.ent2.position, s.ent2pos) > swapDepth + swapDepthDifference)
+            if(s.Two(s.ent1, s.ent1pos, swapSpeed, swapDepth)
+                && s.Two(s.ent2, s.ent2pos, swapSpeed, swapDepth + swapDepthDifference))
             { s.swapStage = 3; }
         }
-        else
-        {
-            s.ent1.GetComponent<Renderer>().material.color = Color.green;
-            s.ent2.GetComponent<Renderer>().material.color = Color.blue;
-
-            s.ent2.position += s.ent2.forward * Time.deltaTime * swapSpeed;
-
-            if (Vector3.Distance(s.ent2.position, s.ent2pos) >= swapDepth) { s.swapStage = 2; }
-        }
+        else { s.One(s.ent2, s.ent2pos, swapSpeed, swapDepth); }
 
         return s;
-
     }
 
     #endregion
@@ -389,6 +381,15 @@ public class EnemyAttackManager : MonoBehaviour
     }
 
     #endregion
+
+    void RemoveAll(Transform t)
+    {
+        zooms.RemoveAll(z => z.entity == t);
+        circles.RemoveAll(c => c.entity == t);
+        swaps.RemoveAll(s => s.ent1 == t);
+        swaps.RemoveAll(s => s.ent2 == t);
+        Debug.Log("done");
+    }
 
 }
 

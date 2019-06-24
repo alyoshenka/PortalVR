@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : MonoBehaviour, IScoreListener
 {
     public int startingBalance;    
 
@@ -21,6 +21,8 @@ public class InventoryManager : MonoBehaviour
     void Start()
     {
         Balance = startingBalance;
+        FindObjectOfType<ScoreKeeper>().score = Balance;
+        FindObjectOfType<ScoreKeeper>().scoreListeners.Add(this);
         ScoreText = scoreText;
         ScoreText.text = "$ " + Balance;
         inventory = new List<PickupObjectUI>();
@@ -42,12 +44,6 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public static void AddToInventory(PickupObjectUI po)
     {
         inventory.Add(po);
@@ -55,5 +51,11 @@ public class InventoryManager : MonoBehaviour
         OrganizePickups();
         Debug.Log("Bal = " + Balance);
         pg.GeneratePickup(po);
+    }
+
+    public void UpdateScore(int score)
+    {
+        Balance = score;
+        OrganizePickups();
     }
 }

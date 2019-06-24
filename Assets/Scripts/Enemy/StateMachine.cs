@@ -38,11 +38,14 @@ public abstract class EnemyState : IEnemyState
 public class ProcessState : EnemyState
 {
     ControllableReactor readyButton;
+    LevelManager lm;
+
     bool buttonPressed;
 
     public ProcessState()
     {
         buttonPressed = false;
+        lm = GameObject.FindObjectOfType<LevelManager>();
     }
 
     public void AddReadyButton(ControllableReactor _readyButton)
@@ -54,6 +57,7 @@ public class ProcessState : EnemyState
     public override void OnEnter()
     {
         Debug.Log("enter process");
+        // open score and pickup ui
     }
 
     public override void OnUpdate()
@@ -65,6 +69,9 @@ public class ProcessState : EnemyState
     {
         Debug.Log("exit process");
         buttonPressed = false;
+        lm.NextLevel();
+
+        // close score and pickup ui
     }
 
     public override bool ReadyForNextState()

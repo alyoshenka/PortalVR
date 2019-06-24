@@ -3,28 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public interface IScoreListener
+{
+    void UpdateScore(int newScore);
+}
+
 public class ScoreKeeper : MonoBehaviour
 {
     public Text scoreboard;
 
-    int score;
-    // list of listeners?
+    public int score;
+
+    public List<IScoreListener> scoreListeners;
 
     // Start is called before the first frame update
     void Start()
     {
-        score = 0; // add functionality to bind listeners
-        UpdateText();
+        UpdateUI();
+        scoreListeners = new List<IScoreListener>();
     }
 
     public void AddPoints(int points)
     {
         score += points;
-        UpdateText();
+        foreach (IScoreListener i in scoreListeners) { i.UpdateScore(score); }
+        UpdateUI();
     }
-        
 
-    public void UpdateText()
+    void UpdateUI()
     {
         scoreboard.text = "Score: " + score + "\nLevel: " + "Level?";
     }

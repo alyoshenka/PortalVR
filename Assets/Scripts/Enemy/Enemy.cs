@@ -95,9 +95,16 @@ public class Enemy : DamageableEnity
     public override void OnDeath()
     {
         Instantiate(deathEffect.gameObject, transform.position, transform.rotation);
+        StartCoroutine("EOF");
+    }
+
+    IEnumerator EOF()
+    {
+        yield return new WaitForEndOfFrame();
         GameObject.FindGameObjectWithTag("ScoreKeeper").GetComponent<ScoreKeeper>().AddPoints(points); // change
         enemies.Remove(this);
-        Destroy(gameObject);        
+        FindObjectOfType<EnemyAttackManager>().toRemove.Add(transform);
+        Destroy(gameObject);
     }
 
     public void Arrange()

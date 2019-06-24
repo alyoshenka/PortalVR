@@ -19,6 +19,46 @@ public struct SwapHolder
         ent2forward = ent2pos + ent2.forward * swapDepth;
         swapStage = 1;
     }
+
+    #region SwapStages
+
+    public void One(Transform t, Vector3 pos, float swapSpeed, float swapDepth)
+    {
+        if(null == t) { swapStage = 2; }
+        else
+        {
+            t.position += t.forward * Time.deltaTime * swapSpeed;
+            if (Vector3.Distance(t.position, pos) >= swapDepth) { swapStage = 2; }
+        }       
+    }
+
+    public bool Two(Transform t, Vector3 pos, float swapSpeed, float swapDepth)
+    {
+        if(null == t) { return true; }
+
+        t.position += t.forward * Time.deltaTime * swapSpeed;
+        return Vector3.Distance(t.position, pos) > swapDepth;
+    }
+
+    public bool Three(Transform t, Vector3 forward, float swapSpeed, float eps)
+    {
+        if(null == t) { return true; }
+
+        t.LookAt(forward);
+        t.position += t.forward * swapSpeed * Time.deltaTime;
+        return Vector3.Distance(t.position, forward) < eps;
+    }
+
+    public bool Four(Transform t, Vector3 pos, float swapSpeed, float eps)
+    {
+        if(null == t) { return true; }        
+
+        t.LookAt(pos);
+        t.position += t.forward * swapSpeed * Time.deltaTime;
+        return Vector3.Distance(t.position, pos) < eps;
+    }
+
+    #endregion
 }
 
 public struct CircleHolder
