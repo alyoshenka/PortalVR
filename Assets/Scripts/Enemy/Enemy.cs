@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class Enemy : DamageableEnity
         
 {    public enum Type { circling, waving }
@@ -16,6 +15,12 @@ public class Enemy : DamageableEnity
     public float radius;
     public float upSpeed = 10f;
     public float upMultiplier = 0.1f;
+    public float fallTime;
+
+    [Header("Sounds")]
+    public AudioClip fireSound;
+    public AudioClip shotSound;
+    public AudioClip dieSound;
 
     [HideInInspector]
     public static int currentIdx;
@@ -29,12 +34,14 @@ public class Enemy : DamageableEnity
     public bool IsShooting { get; set; }
     public bool InPosition { get; private set; }
 
-    float shotElapsed;
+    float shotElapsed, fallElapsed;
     float angle; // deg
     float upVal;   
 
     // holders
     Vector3 newPosition;
+    AudioSource a;
+    // Rigidbody rb;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -42,12 +49,20 @@ public class Enemy : DamageableEnity
         base.Start();       
         enemies.Add(this);
 
-        shotElapsed = 0f;
+        shotElapsed = fallElapsed = 0f;
         angle = 0f;
         newPosition = transform.position;
         upVal = 0f;
         goalPos = Vector3.zero;
         InPosition = false;
+
+        // rb = GetComponent<Rigidbody>();
+        // rb.useGravity = true;
+        // rb.isKinematic = false;
+        gameObject.AddComponent<AudioSource>();
+        a = GetComponent<AudioSource>();
+        a.playOnAwake = false;
+        a.loop = false;
     }
 
     public static void Initialize()
@@ -72,6 +87,8 @@ public class Enemy : DamageableEnity
             shotElapsed = 0f;
             GameObject bul = Instantiate(bullet, transform.position, Quaternion.identity);
             bul.transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
+            a.clip = fireSound;
+            a.Play();
         }
  
     }
@@ -92,18 +109,29 @@ public class Enemy : DamageableEnity
         transform.position = pos;
     }
 
+    public override Explosion TakeDamage(int damage)
+    {
+        a.clip = shotSound;
+        a.Play();
+        return base.TakeDamage(damage);
+    }
+
     public override void OnDeath()
     {
         Instantiate(deathEffect.gameObject, transform.position, transform.rotation);
+        FindObjectOfType<EnemyAttackManager>().toRemove.Add(transform);
+        GameObject.FindGameObjectWithTag("ScoreKeeper").GetComponent<ScoreKeeper>().AddPoints(points); // change
+        enemies.Remove(this);
+        a.clip = dieSound;
+        a.Play();
         StartCoroutine("EOF");
     }
 
     IEnumerator EOF()
     {
-        yield return new WaitForEndOfFrame();
-        GameObject.FindGameObjectWithTag("ScoreKeeper").GetComponent<ScoreKeeper>().AddPoints(points); // change
-        enemies.Remove(this);
-        FindObjectOfType<EnemyAttackManager>().toRemove.Add(transform);
+        gameObject.SetActive(false);
+        a.enabled = true;
+        yield return new WaitForSeconds(dieSound.length);     
         Destroy(gameObject);
     }
 

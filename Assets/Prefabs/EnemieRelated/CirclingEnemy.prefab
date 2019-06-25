@@ -119,6 +119,9 @@ MonoBehaviour:
   radius: 0
   upSpeed: 5
   upMultiplier: 0.01
+  fireSound: {fileID: 8300000, guid: 63f78716e88543d47b3aaebd34910b1c, type: 3}
+  shotSound: {fileID: 8300000, guid: 63f78716e88543d47b3aaebd34910b1c, type: 3}
+  dieSound: {fileID: 8300000, guid: 1722ae61d2b6ba84d8671b193d72309d, type: 3}
   goalPos: {x: 0, y: 0, z: 0}
 --- !u!54 &-5671896970006956955
 Rigidbody:

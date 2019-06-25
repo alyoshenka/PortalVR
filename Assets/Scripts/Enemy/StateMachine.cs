@@ -56,7 +56,6 @@ public class ProcessState : EnemyState
 
     public override void OnEnter()
     {
-        Debug.Log("enter process");
         // open score and pickup ui
     }
 
@@ -67,7 +66,6 @@ public class ProcessState : EnemyState
 
     public override void OnExit()
     {
-        Debug.Log("exit process");
         buttonPressed = false;
         lm.NextLevel();
 
@@ -101,8 +99,6 @@ public class SpawnState : EnemyState
 
     public override void OnEnter()
     {
-        Debug.Log("enter spawn");
-
         Enemy.Initialize();
     }
 
@@ -115,7 +111,6 @@ public class SpawnState : EnemyState
 
     public override void OnExit()
     {
-        Debug.Log("exit spawn");
         waitingSpawnerCount = spawners.Count;
         foreach(Spawner s in spawners) { s.Reset(); }
     }
@@ -142,8 +137,6 @@ public class ArrangeState : EnemyState
 
     public override void OnEnter()
     {
-        Debug.Log("enter arrange");
-
         gm.Initialize(Enemy.enemies);
     }
 
@@ -154,7 +147,7 @@ public class ArrangeState : EnemyState
 
     public override void OnExit()
     {
-        Debug.Log("exit arrange");
+
     }
 
     public override bool ReadyForNextState()
@@ -187,7 +180,6 @@ public class FireState : EnemyState
 
     public override void OnExit()
     {
-        Debug.Log("exit fire");
 
         Enemy.enemies.Clear();
     }

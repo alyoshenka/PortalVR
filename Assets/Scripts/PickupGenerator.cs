@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class PickupGenerator : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public AudioClip generationSound;
+    AudioSource a;
+
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        a = GetComponent<AudioSource>();
+        a.loop = false;
+        a.playOnAwake = false;
+        a.clip = generationSound;
     }
 
     public void GeneratePickup(PickupObjectUI pou)
@@ -21,5 +21,6 @@ public class PickupGenerator : MonoBehaviour
         Debug.Log("generate " + pou.name);
 
         GameObject g = Instantiate(pou.obj.gameObject, transform.position, Quaternion.identity);
+        a.Play();
     }
 }

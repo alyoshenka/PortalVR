@@ -15,10 +15,12 @@ public class Gun : VRTK.VRTK_InteractableObject
     // public GameObject crosshair;
     [Range(0, 1)]
     public float shotStrength;
+    public AudioClip fireSound;
 
     bool active;
     bool nextFrame;
     VRTK_ControllerReference hand;
+    Transform firePoint;
     // Ray aim;
 
    //  RaycastHit hit;
@@ -29,6 +31,7 @@ public class Gun : VRTK.VRTK_InteractableObject
         active = false;
         nextFrame = false;
         hand = null;
+        firePoint = transform.Find("FirePoint");
         // aim = new Ray(transform.position, transform.forward);
         // crosshair.SetActive(false);
     }
@@ -78,7 +81,7 @@ public class Gun : VRTK.VRTK_InteractableObject
     void Shoot(object sender, ControllerInteractionEventArgs e)
     {
         // VRTK_ControllerHaptics.CancelHapticPulse(hand);
-        GameObject bul = Instantiate(bullet, transform.position, transform.rotation);
+        GameObject bul = Instantiate(bullet, firePoint.position, firePoint.rotation);
         // VRTK_ControllerHaptics.TriggerHapticPulse(hand, shotStrength);
     }
     

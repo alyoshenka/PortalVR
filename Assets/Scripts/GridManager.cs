@@ -34,7 +34,7 @@ public class GridManager : MonoBehaviour
             assign.y = y;
             
             enemyPositions[i] = assign;            
-            Instantiate(marker, assign, Quaternion.identity);
+            // Instantiate(marker, assign, Quaternion.identity);
         }
 
         for (int i = 0; i < enemies.Count; i++) { enemies[i].goalPos = enemyPositions[i]; }

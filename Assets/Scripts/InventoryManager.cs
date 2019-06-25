@@ -49,7 +49,6 @@ public class InventoryManager : MonoBehaviour, IScoreListener
         inventory.Add(po);
         Balance -= po.obj.cost; // update ui, etc from there
         OrganizePickups();
-        Debug.Log("Bal = " + Balance);
         pg.GeneratePickup(po);
     }
 

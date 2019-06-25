@@ -22,13 +22,13 @@ public struct SwapHolder
 
     #region SwapStages
 
-    public void One(Transform t, Vector3 pos, float swapSpeed, float swapDepth)
+    public void One(float swapSpeed, float swapDepth)
     {
-        if(null == t) { swapStage = 2; }
+        if(null == ent2) { swapStage = 2; }
         else
         {
-            t.position += t.forward * Time.deltaTime * swapSpeed;
-            if (Vector3.Distance(t.position, pos) >= swapDepth) { swapStage = 2; }
+            ent2.position += ent2.forward * Time.deltaTime * swapSpeed;
+            if (Vector3.Distance(ent2.position, ent2pos) >= swapDepth) { swapStage = 2; }
         }       
     }
 
@@ -37,7 +37,7 @@ public struct SwapHolder
         if(null == t) { return true; }
 
         t.position += t.forward * Time.deltaTime * swapSpeed;
-        return Vector3.Distance(t.position, pos) > swapDepth;
+        return Vector3.Distance(t.position, pos) >= swapDepth;
     }
 
     public bool Three(Transform t, Vector3 forward, float swapSpeed, float eps)
@@ -68,7 +68,7 @@ public struct CircleHolder
     public Vector3 center, origPos;
     public float curDist;
     public int circleStage;
-    public int cnt;
+    public bool passed;
 
     public void Initialize(Transform _ent, float rad, Vector3 cent)
     {
@@ -77,7 +77,7 @@ public struct CircleHolder
         radius = rad;
         center = cent;
         circleStage = 1;
-        cnt = 0;
+        passed = false;
     }
 }
 

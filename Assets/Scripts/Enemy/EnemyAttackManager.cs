@@ -82,7 +82,7 @@ public class EnemyAttackManager : MonoBehaviour
 
     bool RunState()
     {
-        // foreach (Transform t in toRemove) { RemoveAll(t); }
+        foreach (Transform t in toRemove) { RemoveAll(t); }
         switch (currentAttack)
         {
             case Attack.swap:
@@ -122,7 +122,6 @@ public class EnemyAttackManager : MonoBehaviour
                 Debug.LogError("Invalid state");
                 break;
         }
-        Debug.Log(newAttack);
         return newAttack;
     }
 
@@ -131,6 +130,7 @@ public class EnemyAttackManager : MonoBehaviour
     void SwapInit()
     {
         swapTimeElapsed = swapIntervalElapsed = 0f;
+        swapIntervalElapsed = swapInterval;
         swaps.Clear();
 
         swapIntervalElapsed = swapInterval;
@@ -149,11 +149,12 @@ public class EnemyAttackManager : MonoBehaviour
         if(swapIntervalElapsed >= swapInterval)
         {
             swapIntervalElapsed = 0f;
-
+            int itrs = 0;
             bool contains = false;
             Transform ent1, ent2;
             do
             {
+                if (++itrs > Enemy.enemies.Count) { return false; }
                 ent1 = Enemy.enemies[Random.Range(0, Enemy.enemies.Count - 1)].transform;
                 contains = false;
                 foreach (SwapHolder s in swaps)
@@ -165,9 +166,10 @@ public class EnemyAttackManager : MonoBehaviour
                     }
                 }
             } while (contains);
-            
+            itrs = 0;
             do
             {
+                if (++itrs > Enemy.enemies.Count) { return false; }
                 ent2 = Enemy.enemies[Random.Range(0, Enemy.enemies.Count - 1)].transform;
                 contains = false;
                 foreach (SwapHolder s in swaps)
@@ -192,34 +194,80 @@ public class EnemyAttackManager : MonoBehaviour
 
     SwapHolder Swap(SwapHolder s)
     {
-        Debug.Log(s.swapStage);
-        if (s.swapStage > 5) { Debug.LogWarning("Invalid stage"); }
-        else if(s.swapStage > 4)
+        bool one, two;
+        one = two = true;
+        if (s.swapStage > 5) { Debug.Log("Invalid"); }
+        else if (s.swapStage > 4)
         {
-            if (null != s.ent1) { s.ent1.rotation = Quaternion.identity; }
-            if (null != s.ent2) { s.ent2.rotation = Quaternion.identity; }
+            if (null != s.ent1) { s.ent2.rotation = Quaternion.identity; }
 
             s.swapStage = 6;
         }
-        else if(s.swapStage > 3)
+        else if (s.swapStage > 3)
         {
-            if (s.Four(s.ent1, s.ent2pos, swapSpeed, swapEpsilon)
-                && s.Four(s.ent2, s.ent1pos, swapSpeed, swapEpsilon))
-            { s.swapStage = 5; }
+            if (null != s.ent1) {
+                if(Vector3.Distance(s.ent1.position, s.ent2pos) > swapEpsilon)
+                {
+                    s.ent1.position += s.ent1.forward * swapSpeed * Time.deltaTime;
+                    s.ent1.LookAt(s.ent2pos);
+                    one = false;
+                }
+                else
+                {
+                    s.ent1.rotation = Quaternion.identity;
+                    one = true;
+                }
+
+            }
+            if (null != s.ent2)
+            {
+                s.ent2.LookAt(s.ent1pos);
+                s.ent2.position += s.ent2.forward * swapSpeed * Time.deltaTime;
+                two = Vector3.Distance(s.ent2.position, s.ent1pos) < swapEpsilon;
+            }
+           
+            if (one && two) { s.swapStage = 5; }
         }
-        else if(s.swapStage > 2)
+        else if (s.swapStage > 2)
         {
-            if (s.Three(s.ent1, s.ent2forward, swapSpeed, swapEpsilon)
-                && s.Three(s.ent2, s.ent1forward, swapSpeed, swapEpsilon))
-            { s.swapStage = 4; }            
+            if(null != s.ent1) {
+                s.ent1.LookAt(s.ent2forward);
+                s.ent1.position += s.ent1.forward * swapSpeed * Time.deltaTime;
+                one = Vector3.Distance(s.ent2.position, s.ent1forward) < swapEpsilon;
+            }
+            if(null != s.ent2)
+            {
+                s.ent2.LookAt(s.ent1forward);
+                s.ent2.position += s.ent2.forward * swapSpeed * Time.deltaTime;
+                two = Vector3.Distance(s.ent1.position, s.ent2forward) < swapEpsilon;
+            }
+
+            if (one && two) { s.swapStage = 4; }
         }
-        else if(s.swapStage > 1)
+        else if (s.swapStage > 1)
         {
-            if(s.Two(s.ent1, s.ent1pos, swapSpeed, swapDepth)
-                && s.Two(s.ent2, s.ent2pos, swapSpeed, swapDepth + swapDepthDifference))
-            { s.swapStage = 3; }
+            if(null != s.ent1)
+            {
+                s.ent1.position += s.ent1.forward * Time.deltaTime * swapSpeed;
+                one = Vector3.Distance(s.ent1.position, s.ent1pos) > swapDepth;
+            }
+            if(null != s.ent2)
+            {
+                s.ent2.position += s.ent2.forward * Time.deltaTime * swapSpeed;
+                two = Vector3.Distance(s.ent2.position, s.ent2pos) > swapDepth + swapDepthDifference;
+            }
+
+            if (one && two) { s.swapStage = 3; }
         }
-        else { s.One(s.ent2, s.ent2pos, swapSpeed, swapDepth); }
+        else
+        {
+            if (null == s.ent2) { s.swapStage =2; }
+            else
+            {
+                s.ent2.position += s.ent2.forward * Time.deltaTime * swapSpeed;
+                if (Vector3.Distance(s.ent2.position, s.ent2pos) >= swapDepth) { s.swapStage = 2; }
+            }
+        }
 
         return s;
     }
@@ -249,8 +297,10 @@ public class EnemyAttackManager : MonoBehaviour
 
             Transform t;
             bool contains;
+            int itrs = 0;
             do
             {
+                if(++itrs > Enemy.enemies.Count) { return false; }
                 t = Enemy.enemies[Random.Range(0, Enemy.enemies.Count - 1)].transform;
                 contains = false;
                 foreach (CircleHolder c in circles)
@@ -287,8 +337,8 @@ public class EnemyAttackManager : MonoBehaviour
         else if (c.circleStage > 1)
         {
             c.entity.RotateAround(c.center, c.entity.up, circleRotateSpeed * Time.deltaTime);
-            c.cnt++;
-            if (c.cnt > 30 && Vector3.Distance(c.entity.position, c.origPos) <= c.curDist + circleEpsilon) { c.circleStage = 3; }
+            if (Vector3.Distance(c.entity.position, c.origPos) > c.curDist + circleEpsilon) { c.passed = true; }
+            if (c.passed && Vector3.Distance(c.entity.position, c.origPos) <= c.curDist + circleEpsilon) { c.circleStage = 3; }
         }
         else
         {
@@ -330,12 +380,14 @@ public class EnemyAttackManager : MonoBehaviour
 
             Transform t;
             bool contains;
+            int itrs = 0;
             do
             {
                 t = Enemy.enemies[Random.Range(0, Enemy.enemies.Count - 1)].transform;
                 contains = false;
                 foreach (ZoomHolder z in zooms)
                 {
+                    if(++itrs > Enemy.enemies.Count) { return false; }
                     if (t == z.entity)
                     {
                         contains = true;
@@ -386,9 +438,7 @@ public class EnemyAttackManager : MonoBehaviour
     {
         zooms.RemoveAll(z => z.entity == t);
         circles.RemoveAll(c => c.entity == t);
-        swaps.RemoveAll(s => s.ent1 == t);
-        swaps.RemoveAll(s => s.ent2 == t);
-        Debug.Log("done");
+        swaps.RemoveAll(s => s.ent1 == s.ent2 == t);
     }
 
 }
