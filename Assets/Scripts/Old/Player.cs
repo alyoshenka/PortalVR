@@ -56,4 +56,11 @@ public class Player : DamageableEnity
         damageFlash.enabled = false;
     }
 
+    public void RefillHealth(int points)
+    {
+        currentHealth += points;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        healthBar.fillAmount = 1.0f * currentHealth / maxHealth;
+    }
+
 }

@@ -15,7 +15,7 @@ public abstract class DamageableEnity : MonoBehaviour, IDamageable
     public Explosion hitEffect;
     public Explosion deathEffect;
 
-    protected int currentHealth;
+    public int currentHealth { get; protected set; }
 
     protected virtual void Start()
     {

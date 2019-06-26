@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
 
-public class Gun : VRTK.VRTK_InteractableObject
+[RequireComponent(typeof(VRTK_InteractObjectHighlighter))]
+public class Gun : VRTK_InteractableObject
 {
     public GameObject bullet;
     public float firingSpeed;
