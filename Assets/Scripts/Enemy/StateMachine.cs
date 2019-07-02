@@ -52,11 +52,12 @@ public class ProcessState : EnemyState
     {
         readyButton = _readyButton;
         readyButton.controllable.MaxLimitReached += EndStateButtonPress;
+        readyButton.displayText.text = "Start Game";
     }
 
     public override void OnEnter()
     {
-        // open score and pickup ui
+        readyButton.displayText.text = "Next Level";
     }
 
     public override void OnUpdate()
@@ -67,6 +68,7 @@ public class ProcessState : EnemyState
     public override void OnExit()
     {
         buttonPressed = false;
+        readyButton.displayText.text = "Kill All Enemies"; // maybe too much????
         lm.NextLevel();
 
         // close score and pickup ui
@@ -173,8 +175,6 @@ public class FireState : EnemyState
 
     public override void OnUpdate()
     {
-        float t = Time.deltaTime;
-        // foreach(Enemy e in Enemy.enemies) { e.Shoot(t); }
         eam.UpdateAttacks();
     }
 

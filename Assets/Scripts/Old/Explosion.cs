@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ParticleSystem))]
+[RequireComponent(typeof(AudioSource))]
 public class Explosion : MonoBehaviour
 {
     public float lifetime;

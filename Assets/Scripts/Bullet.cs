@@ -8,9 +8,7 @@ public class Bullet : MonoBehaviour
     public float speed;
     public int damage;
     public float lifetime;
-    public AudioClip hitSound;
 
-    AudioSource a;
     float elapsedTime;
 
     // Start is called before the first frame update
@@ -18,11 +16,6 @@ public class Bullet : MonoBehaviour
     {
         GetComponent<Collider>().isTrigger = true;
         elapsedTime = 0f;
-        gameObject.AddComponent<AudioSource>();
-        a = GetComponent<AudioSource>();
-        a.clip = hitSound;
-        a.playOnAwake = false;
-        a.loop = false;
     }
 
     // Update is called once per frame
@@ -43,7 +36,9 @@ public class Bullet : MonoBehaviour
             Instantiate(otherExpl, transform.position, transform.rotation);
         }
         else { Instantiate(explosion, transform.position, transform.rotation); }
-        a.Play();
-        Destroy(gameObject, hitSound.length); // use object pool
+
+        foreach(Collider c in GetComponentsInChildren<Collider>()) { c.enabled = false; }
+        foreach(Renderer r in GetComponentsInChildren<Renderer>()) { r.enabled = false; }
+        Destroy(gameObject, explosion.GetComponent<AudioSource>().clip.length); // use object pool
     }
 }

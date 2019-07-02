@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 251f1737ff4e4cb45880179ac0331208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 1
   hitEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
     type: 3}
   deathEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
@@ -624,9 +624,9 @@ MonoBehaviour:
   upSpeed: 5
   upMultiplier: 0.01
   fallTime: 0
-  fireSound: {fileID: 8300000, guid: 63f78716e88543d47b3aaebd34910b1c, type: 3}
-  shotSound: {fileID: 8300000, guid: 63f78716e88543d47b3aaebd34910b1c, type: 3}
-  dieSound: {fileID: 8300000, guid: 1722ae61d2b6ba84d8671b193d72309d, type: 3}
+  fireSound: {fileID: 8300000, guid: 1e5725ff6f456274b86b44920d43be99, type: 3}
+  shotSound: {fileID: 8300000, guid: ebeae5a1f29de7c4e9ba45175e0a6e8d, type: 3}
+  dieSound: {fileID: 8300000, guid: 55ae65f58d32a384aa77c828d1ad3c35, type: 3}
   goalPos: {x: 0, y: 0, z: 0}
 --- !u!65 &8532832581552972386
 BoxCollider:

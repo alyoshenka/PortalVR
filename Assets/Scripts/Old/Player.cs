@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Player : DamageableEnity
 { 
     public Image damageFlash;
-    public Explosion damageExplosion;
     public Color damageColor;
     [Tooltip("The opacity of the flash at start")]
     [Range(0, 1)]
@@ -39,7 +38,7 @@ public class Player : DamageableEnity
 
         base.TakeDamage(damage);
         healthBar.fillAmount = 1.0f * currentHealth / maxHealth;
-        return damageExplosion;
+        return hitEffect;
     }
 
     IEnumerator DamageFlash()

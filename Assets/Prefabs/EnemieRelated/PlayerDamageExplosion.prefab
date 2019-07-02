@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9203809615773987291}
   - component: {fileID: -586738849853454693}
   m_Layer: 0
-  m_Name: Explosion
+  m_Name: PlayerDamageExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4835,7 +4835,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e3e28da6cbde3654ea652c914d9041e3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1134800c3ef5af040aaefb26fceda3f4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -4845,10 +4845,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0
+  MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

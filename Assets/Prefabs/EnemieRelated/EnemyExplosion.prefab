@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9203809615773987291}
   - component: {fileID: -586738849853454693}
   m_Layer: 0
-  m_Name: Explosion
+  m_Name: EnemyExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,7 +224,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.46226418, g: 0, b: 0.014009094, a: 1}
+      maxColor: {r: 0.033775374, g: 0.31132078, b: 0.053605463, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4835,7 +4835,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e3e28da6cbde3654ea652c914d9041e3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ebeae5a1f29de7c4e9ba45175e0a6e8d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -4845,7 +4845,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0
+  MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 1

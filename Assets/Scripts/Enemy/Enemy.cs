@@ -19,7 +19,6 @@ public class Enemy : DamageableEnity
     [Header("Sounds")]
     public AudioClip fireSound;
     public AudioClip shotSound;
-    public AudioClip dieSound;
 
     [HideInInspector]
     public static int currentIdx;
@@ -118,8 +117,6 @@ public class Enemy : DamageableEnity
         FindObjectOfType<EnemyAttackManager>().toRemove.Add(transform);
         GameObject.FindGameObjectWithTag("ScoreKeeper").GetComponent<ScoreKeeper>().AddPoints(points); // change
         enemies.Remove(this);
-        a.clip = dieSound;
-        a.Play();
         StartCoroutine("EOF");
     }
 
@@ -127,7 +124,7 @@ public class Enemy : DamageableEnity
     {
         gameObject.SetActive(false);
         a.enabled = true;
-        yield return new WaitForSeconds(dieSound.length);     
+        yield return new WaitForSeconds(deathEffect.GetComponent<AudioSource>().clip.length); // im sorry   
         Destroy(gameObject);
     }
 
