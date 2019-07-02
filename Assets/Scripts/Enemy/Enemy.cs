@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : DamageableEnity
-        
+public class Enemy : DamageableEnity      
 {    public enum Type { circling, waving }
 
     public int points;
@@ -61,6 +60,9 @@ public class Enemy : DamageableEnity
         // rb.isKinematic = false;
         gameObject.AddComponent<AudioSource>();
         a = GetComponent<AudioSource>();
+        a.minDistance = 0;
+        a.maxDistance = 500;
+        a.rolloffMode = AudioRolloffMode.Linear;
         a.playOnAwake = false;
         a.loop = false;
     }
@@ -79,18 +81,12 @@ public class Enemy : DamageableEnity
        else { Wave(); }
     }
 
-    public void Shoot(float dt)
+    public void Shoot()
     {
-        shotElapsed += dt;
-        if (shotElapsed >= shotTimer)
-        {
-            shotElapsed = 0f;
-            GameObject bul = Instantiate(bullet, transform.position, Quaternion.identity);
-            bul.transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
-            a.clip = fireSound;
-            a.Play();
-        }
- 
+        GameObject bul = Instantiate(bullet, transform.position, Quaternion.identity);
+        bul.transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
+        a.clip = fireSound;
+        a.Play();
     }
 
     void Rest() { }

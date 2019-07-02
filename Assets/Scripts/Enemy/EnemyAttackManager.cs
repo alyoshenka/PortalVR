@@ -8,6 +8,8 @@ public class EnemyAttackManager : MonoBehaviour
 
     #region Design Vars
 
+    public float shotTime;
+
     [Header("Swap")]
     public float swapTime;
     public float swapInterval;
@@ -44,7 +46,9 @@ public class EnemyAttackManager : MonoBehaviour
     List<ZoomHolder> zooms;
     float zoomTimeElapsed, zoomIntervalElapsed;
 
+    [HideInInspector]
     public List<Transform> toRemove;
+    float shotElapsed;
 
     #endregion
 
@@ -71,12 +75,14 @@ public class EnemyAttackManager : MonoBehaviour
 
         currentAttack = ChooseRandomAttack();
 
+        shotElapsed = 0f;
         swapTimeElapsed = swapIntervalElapsed = 0f;
         circleTimeElapsed = circleIntervalElapsed = 0f;
     }
 
     public void UpdateAttacks()
     {
+        shotElapsed += Time.deltaTime;
         if (RunState()) { currentAttack = ChooseRandomAttack(); }
     }
 
@@ -106,7 +112,6 @@ public class EnemyAttackManager : MonoBehaviour
         do { newA = Random.Range(0, attackCount); }
         while (newA == prevA);
         Attack newAttack = (Attack)newA;
-        newAttack = Attack.swap;
         switch (newAttack)
         {
             case Attack.swap:
@@ -286,6 +291,11 @@ public class EnemyAttackManager : MonoBehaviour
     {
         circleTimeElapsed += Time.deltaTime;
         circleIntervalElapsed += Time.deltaTime;
+        if (shotElapsed >= shotTime)
+        {
+            shotElapsed = 0f;
+            circles[Random.Range(0, circles.Count - 1)].entity.GetComponent<Enemy>().Shoot();
+        }
 
         for (int i = 0; i < circles.Count; i++) { circles[i] = Circle(circles[i]); }
         circles.RemoveAll(z => z.circleStage > 3);
@@ -317,7 +327,6 @@ public class EnemyAttackManager : MonoBehaviour
             circle.Initialize(t, circleRadius, FindObjectOfType<Player>().transform.position);
             circles.Add(circle);
         }
-
         return false;
     }
 
@@ -369,6 +378,11 @@ public class EnemyAttackManager : MonoBehaviour
     {
         zoomTimeElapsed += Time.deltaTime;
         zoomIntervalElapsed += Time.deltaTime;
+        if (shotElapsed >= shotTime)
+        {
+            shotElapsed = 0f;
+            zooms[Random.Range(0, zooms.Count - 1)].entity.GetComponent<Enemy>().Shoot();
+        }
 
         for (int i = 0; i < zooms.Count; i++) { zooms[i] = Zoom(zooms[i]); }
         zooms.RemoveAll(c => c.zoomStage > 3);
@@ -400,7 +414,6 @@ public class EnemyAttackManager : MonoBehaviour
             zoom.Initialize(t, FindObjectOfType<Player>().transform.position);
             zooms.Add(zoom);
         }
-
         return false;
     }
 

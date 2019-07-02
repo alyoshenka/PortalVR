@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// im sorry
 public class LevelManager : MonoBehaviour
 {
     public float enemyIncrease;
@@ -10,6 +11,7 @@ public class LevelManager : MonoBehaviour
     public float speedIncrease;
     public float waitDecrease;
     public float shotIncrease;
+    public float shotTimeIncrease;
 
     public int Level { get; private set; }
 
@@ -20,12 +22,6 @@ public class LevelManager : MonoBehaviour
     {
         Level = 0;
         eam = FindObjectOfType<EnemyAttackManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void NextLevel()
@@ -39,6 +35,7 @@ public class LevelManager : MonoBehaviour
         eam.swapSpeed /= 1 + (speedIncrease * Level);
         eam.zoomSpeed /= 1 + (speedIncrease * Level);
         eam.zoomWait /= 1 - (waitDecrease * Level);
+        eam.shotTime /= 1 - (shotTimeIncrease * Level);
 
         Level++;
 
@@ -51,6 +48,7 @@ public class LevelManager : MonoBehaviour
         eam.swapSpeed *= 1 + (speedIncrease * Level);
         eam.zoomSpeed *= 1 + (speedIncrease * Level);
         eam.zoomWait *= 1 - (waitDecrease * Level);
+        eam.shotTime *= 1 - (shotTimeIncrease * Level);
 
         GameObject.FindObjectOfType<Spawner>().enemyCount += (int)enemyIncrease; // not final
     }

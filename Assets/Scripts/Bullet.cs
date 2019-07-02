@@ -42,12 +42,8 @@ public class Bullet : MonoBehaviour
             Explosion otherExpl = dam.TakeDamage(damage);
             Instantiate(otherExpl, transform.position, transform.rotation);
         }
-        else
-        {
-            Instantiate(explosion, transform.position, transform.rotation);
-            a.Play();
-        }
-
+        else { Instantiate(explosion, transform.position, transform.rotation); }
+        a.Play();
         Destroy(gameObject, hitSound.length); // use object pool
     }
 }

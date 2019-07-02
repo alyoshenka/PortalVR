@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7546360621310467987}
   - component: {fileID: 2116317621561107223}
   - component: {fileID: 3660970189278534682}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: mesh_696191291
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 6801553979964613792}
   - component: {fileID: 7445080121889941099}
   - component: {fileID: 5515169993781446721}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: mesh_1869669781
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4142405332182116390}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: group_449389225
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 572148163003746326}
   - component: {fileID: 7619937790724770728}
   - component: {fileID: 3601248848785077677}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: mesh_1239711061
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 4133883746986385199}
   - component: {fileID: 7333184452869029752}
   - component: {fileID: 7541973503264277314}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: mesh_620634741
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5441476802196786262}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 4996995380893853069}
   - component: {fileID: 1785832906558812551}
   - component: {fileID: 5125946017475936009}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: mesh_1213709244
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -461,7 +461,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1782958190930518472}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: group_1739217168
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -498,7 +498,7 @@ GameObject:
   - component: {fileID: 3225509159663158574}
   - component: {fileID: 6830837532300165871}
   - component: {fileID: 8206821727605396669}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: mesh_1622949996
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 5942752746003788516}
   - component: {fileID: 8312200334010105811}
   - component: {fileID: 8532832581552972386}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Enemy_Modeled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,6 +623,7 @@ MonoBehaviour:
   radius: 0
   upSpeed: 5
   upMultiplier: 0.01
+  fallTime: 0
   fireSound: {fileID: 8300000, guid: 63f78716e88543d47b3aaebd34910b1c, type: 3}
   shotSound: {fileID: 8300000, guid: 63f78716e88543d47b3aaebd34910b1c, type: 3}
   dieSound: {fileID: 8300000, guid: 1722ae61d2b6ba84d8671b193d72309d, type: 3}
@@ -649,7 +650,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 750062471758991752}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: group_333274872
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +683,7 @@ GameObject:
   - component: {fileID: 5616403663153732134}
   - component: {fileID: 1551353421042156568}
   - component: {fileID: 1608360652271308841}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: mesh_613319332
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -757,7 +758,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5247947693173906155}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: group_752171902
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,7 +791,7 @@ GameObject:
   - component: {fileID: 5922184041482646347}
   - component: {fileID: 2880637775696042049}
   - component: {fileID: 9214351331046552198}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: mesh_382389980
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -867,7 +868,7 @@ GameObject:
   - component: {fileID: 7958350633844279668}
   - component: {fileID: 141314752282139693}
   - component: {fileID: 7416331299366743910}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: mesh_1649740291
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -945,7 +946,7 @@ GameObject:
   - component: {fileID: 1227737050427161801}
   - component: {fileID: 1456915204901814319}
   - component: {fileID: 7124129704510824527}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: mesh_837977809
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1020,7 +1021,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7081014211108560579}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: group_843153144
   m_TagString: Untagged
   m_Icon: {fileID: 0}

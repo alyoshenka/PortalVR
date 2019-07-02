@@ -8,6 +8,7 @@ public class BigHealth : PowerupObject
     {
         Player p = FindObjectOfType<Player>();
         p.RefillHealth(p.maxHealth);
+        Explode();
     }
 
     public override void ReverseEffect()

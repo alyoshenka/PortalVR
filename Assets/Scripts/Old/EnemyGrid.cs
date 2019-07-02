@@ -34,20 +34,6 @@ public class EnemyGrid : MonoBehaviour
         curEnemIdx = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (ready)
-        {
-            shotElapsed += Time.deltaTime;
-            if(shotElapsed >= shotTimer)
-            {
-                Shoot();
-                shotElapsed = 0f;
-            }
-        }
-    }
-
     public void MakeNextLevel(int _width, int _height)
     {
         enemies.Clear();
@@ -89,13 +75,4 @@ public class EnemyGrid : MonoBehaviour
     {
         waitingEnemies.Add(e);
     }
-
-    static void Shoot()
-    {
-        currentEnemy = readyEnemies[curEnemIdx++];
-        if(curEnemIdx >= readyEnemies.Count) { curEnemIdx = 0; }
-
-        currentEnemy.Shoot(Time.deltaTime);
-    }
-
 }

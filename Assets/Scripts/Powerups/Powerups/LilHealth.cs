@@ -12,6 +12,7 @@ public class LilHealth : PowerupObject
     {
         Player p = FindObjectOfType<Player>();
         p.RefillHealth((int)(p.maxHealth * healthRefillPercentage));
+        Explode();
     }
 
     public override void ReverseEffect()
