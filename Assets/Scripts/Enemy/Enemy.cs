@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : DamageableEnity      
-{    public enum Type { circling, waving }
+{
+    public enum Type { circling, waving }
+
+    public ScoreKeeperSO sk;
 
     public int points;
     public Transform target;
@@ -115,7 +118,7 @@ public class Enemy : DamageableEnity
     {
         Instantiate(deathEffect.gameObject, transform.position, transform.rotation);
         FindObjectOfType<EnemyAttackManager>().toRemove.Add(transform);
-        GameObject.FindGameObjectWithTag("ScoreKeeper").GetComponent<ScoreKeeper>().AddPoints(points); // change
+        sk.AddPoints(points); // change
         enemies.Remove(this);
         StartCoroutine("EOF");
     }

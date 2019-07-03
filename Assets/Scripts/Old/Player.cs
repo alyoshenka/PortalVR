@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : DamageableEnity
-{ 
+{
+    public ScoreKeeperSO sk;
     public Image damageFlash;
     public Color damageColor;
     [Tooltip("The opacity of the flash at start")]
@@ -28,7 +29,8 @@ public class Player : DamageableEnity
 
     public override void OnDeath()
     {
-        Debug.Log("you died");
+        sk.AddScore();
+        FindObjectOfType<SceneSwitcher>().SwitchToMenu();
     }
 
     public override Explosion TakeDamage(int damage)

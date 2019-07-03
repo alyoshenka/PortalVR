@@ -12,18 +12,26 @@ public class SceneSwitcher : MonoBehaviour
 
     private void Start()
     {
-        if (toMenu) { switchButton.controllable.MaxLimitReached += SwitchToMenu; }
-        else { switchButton.controllable.MaxLimitReached += SwitchToGame; }
+        if (toMenu) { switchButton.controllable.MaxLimitReached += SwitchToMenuListener; }
+        else { switchButton.controllable.MaxLimitReached += SwitchToGameListener; }
     }
 
-    void SwitchToMenu(object sender, ControllableEventArgs e)
+    public void SwitchToMenu()
     {
         // score
         SceneManager.LoadScene("Menu");
     }
-
-    void SwitchToGame(object sender, ControllableEventArgs e)
+    void SwitchToGame()
     {
         SceneManager.LoadScene("Game");
+    }
+
+    void SwitchToMenuListener(object sender, ControllableEventArgs e)
+    {
+        SwitchToMenu();
+    }
+    void SwitchToGameListener(object sender, ControllableEventArgs e)
+    {
+        SwitchToGame();
     }
 }

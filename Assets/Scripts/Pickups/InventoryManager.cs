@@ -6,9 +6,8 @@ using UnityEngine.UI;
 public class InventoryManager : MonoBehaviour, IScoreListener
 {
     public int startingBalance;    
-
-    [Header("UI Elements")]
     public Text scoreText;
+    public ScoreKeeperSO sk;
 
     public static int Balance { get; private set; }
     public static Text ScoreText;
@@ -21,8 +20,7 @@ public class InventoryManager : MonoBehaviour, IScoreListener
     void Start()
     {
         Balance = startingBalance;
-        FindObjectOfType<ScoreKeeper>().score = Balance;
-        FindObjectOfType<ScoreKeeper>().scoreListeners.Add(this);
+        sk.scoreListeners.Add(this);
         ScoreText = scoreText;
         ScoreText.text = "$ " + Balance;
         inventory = new List<PickupObjectUI>();

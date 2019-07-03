@@ -169,7 +169,6 @@ public class FireState : EnemyState
 
     public override void OnEnter()
     {
-        Debug.Log("enter fire");
         eam.Initialize();
     }
 
