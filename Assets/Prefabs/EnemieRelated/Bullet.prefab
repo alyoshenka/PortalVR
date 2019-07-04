@@ -110,7 +110,6 @@ MonoBehaviour:
   speed: 20
   damage: 10
   lifetime: 5
-  hitSound: {fileID: 8300000, guid: 6c1233b63aa6e014dbb374d39a6c7494, type: 3}
 --- !u!54 &4757036453577617758
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -32,7 +32,6 @@ public class MenuScoreUI : MonoBehaviour
         {
             GameObject newScore = Instantiate(scoreDisp, scoreDisp.GetComponent<RectTransform>().position, scoreDisp.transform.rotation, scoreDisp.transform.parent);
             newScore.GetComponent<RectTransform>().localPosition += Vector3.down * spacing * i;
-            Debug.Log(Vector3.down * spacing);
             Text t = newScore.GetComponent<Text>();
             t.text = scores[i] + "";
             if (scores[i] == currentScore && !myScoreDisplayed)
