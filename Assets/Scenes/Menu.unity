@@ -342,7 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numTopScores: 6
   spacing: 50
-  myScoreColor: {r: 0.040216323, g: 0.4716981, b: 0, a: 0}
+  myScoreColor: {r: 0.040216323, g: 0.4716981, b: 0, a: 1}
   sk: {fileID: 11400000, guid: 5b61a186535354c4da37acd63265cb8a, type: 2}
 --- !u!1 &275630438
 GameObject:
@@ -954,7 +954,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 7.489415e+10, z: 5.45e-43, w: 7.489415e+10}
+  m_BoundingSphereOverride: {x: 0, y: 1.1e-44, z: 0, w: 2e-44}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

@@ -19,26 +19,38 @@ public class MenuScoreUI : MonoBehaviour
         myScoreDisplayed = false;
         sk.Init();
         int[] scores = sk.Scores.ToArray();
-        int currentScore = scores.Length > 0 ? scores[scores.Length - 1] : -1; // 0
+        int currentScore = -1;
+        if (!sk.hasRecordedScore) { currentScore = 0; }
+        else if (scores.Length > 0) { currentScore = scores[scores.Length - 1]; }
         Array.Sort(scores);
         Array.Reverse(scores);
         GameObject.Find("ScoreNumber").GetComponent<Text>().text = currentScore +  "";
         GameObject scoreDisp = GameObject.Find("Score");
         if (scores.Length > 0) { scoreDisp.GetComponent<Text>().text = scores[0] + ""; }
 
-        for(int i = 1; i < numTopScores && i < scores.Length; i++)
+        for(int i = 0; i < numTopScores && i < scores.Length; i++)
         {
-            Debug.Log(i);
             GameObject newScore = Instantiate(scoreDisp, scoreDisp.GetComponent<RectTransform>().position, scoreDisp.transform.rotation, scoreDisp.transform.parent);
-            // newScore.GetComponent<RectTransform>().position += Vector3.down * spacing;
+            newScore.GetComponent<RectTransform>().localPosition += Vector3.down * spacing * i;
+            Debug.Log(Vector3.down * spacing);
             Text t = newScore.GetComponent<Text>();
             t.text = scores[i] + "";
-            if(scores[i] == currentScore && !myScoreDisplayed)
+            if (scores[i] == currentScore && !myScoreDisplayed)
             {
                 myScoreDisplayed = true;
                 t.color = myScoreColor;
                 t.fontStyle = FontStyle.Bold;
             }
+        }
+    }
+
+    // test
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            sk.Scores.Add(sk.Scores.Count);
+            Start();
         }
     }
 }

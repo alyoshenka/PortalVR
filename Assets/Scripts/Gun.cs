@@ -56,7 +56,7 @@ public class Gun : VRTK_InteractableObject
         base.Grabbed(currentGrabbingObject);
 
         hand = VRTK_ControllerReference.GetControllerReference(currentGrabbingObject.gameObject);
-        Debug.Log(currentGrabbingObject.gameObject.name);
+        // Debug.Log(currentGrabbingObject.gameObject.name);
 
         currentGrabbingObject.controllerEvents.TriggerPressed += Shoot;
         active = true;

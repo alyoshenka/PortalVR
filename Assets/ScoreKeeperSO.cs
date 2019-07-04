@@ -7,7 +7,8 @@ public class ScoreKeeperSO : ScriptableObject
 {
     [HideInInspector]
     public List<IScoreListener> scoreListeners;
-    public List<int> Scores { get; private set; } 
+    public List<int> Scores { get; private set; }
+    public bool hasRecordedScore;
     int currentScore;
 
     public void Init()
@@ -18,6 +19,7 @@ public class ScoreKeeperSO : ScriptableObject
 
     public void AddPoints(int points)
     {
+        hasRecordedScore = true;
         currentScore += points;
         foreach (IScoreListener i in scoreListeners) { i.UpdateScore(currentScore); }
     }

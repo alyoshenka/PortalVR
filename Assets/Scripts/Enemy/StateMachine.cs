@@ -140,6 +140,7 @@ public class ArrangeState : EnemyState
     public override void OnEnter()
     {
         gm.Initialize(Enemy.enemies);
+        foreach(Gun g in GameObject.FindObjectsOfType<Gun>()) { g.bullet.GetComponent<Collider>().enabled = false; }
     }
 
     public override void OnUpdate()
@@ -149,7 +150,7 @@ public class ArrangeState : EnemyState
 
     public override void OnExit()
     {
-
+        foreach (Gun g in GameObject.FindObjectsOfType<Gun>()) { g.bullet.GetComponent<Collider>().enabled = true; }
     }
 
     public override bool ReadyForNextState()

@@ -21,6 +21,7 @@ public class InventoryManager : MonoBehaviour, IScoreListener
     {
         Balance = startingBalance;
         sk.scoreListeners.Add(this);
+        sk.hasRecordedScore = false;
         ScoreText = scoreText;
         ScoreText.text = "$ " + Balance;
         inventory = new List<PickupObjectUI>();
