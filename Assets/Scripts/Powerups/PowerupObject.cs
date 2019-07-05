@@ -20,6 +20,8 @@ public abstract class PowerupObject : VRTK_InteractableObject, IComparable
     public float minY = -5;
     public float notSeenSeconds = 5;
 
+    // public InventoryManager IM { get; set; }
+
     protected bool used;
 
     void Start()

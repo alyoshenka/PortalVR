@@ -49,4 +49,3 @@ public class EnemyStateMachine : MonoBehaviour
         enemies.Add(e);
     }
 }
-

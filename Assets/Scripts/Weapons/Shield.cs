@@ -4,27 +4,18 @@ using UnityEngine;
 using VRTK;
 
 [RequireComponent(typeof(VRTK_InteractObjectHighlighter))]
-public class Gun : VRTK_InteractableObject
+[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Rigidbody))]
+public class Shield : VRTK_InteractableObject
 {
-    public GameObject bullet;
-    public float firingSpeed;
     [SerializeField]
     public Vector3 grabPos;
     [SerializeField]
     public Vector3 grabRot;
-    // public float aimDist;
-    // public GameObject crosshair;
-    [Range(0, 1)]
-    public float shotStrength;
-    public AudioClip fireSound;
 
     bool active;
     bool nextFrame;
     VRTK_ControllerReference hand;
-    Transform firePoint;
-    // Ray aim;
-
-   //  RaycastHit hit;
 
     // Start is called before the first frame update
     void Start()
@@ -32,9 +23,6 @@ public class Gun : VRTK_InteractableObject
         active = false;
         nextFrame = false;
         hand = null;
-        firePoint = transform.Find("FirePoint");
-        // aim = new Ray(transform.position, transform.forward);
-        // crosshair.SetActive(false);
     }
 
     protected override void Update()
@@ -43,12 +31,6 @@ public class Gun : VRTK_InteractableObject
         if (!active) { return; }
 
         if (nextFrame) { SetOnNextFrame(); }
-        //if (Physics.Raycast(aim, out hit, aimDist))
-        //{
-        //    crosshair.transform.position = hit.transform.position;
-        //    crosshair.SetActive(true);
-        //}
-        //else { crosshair.SetActive(false); }
     }
 
     public override void Grabbed(VRTK_InteractGrab currentGrabbingObject = null)
@@ -56,9 +38,6 @@ public class Gun : VRTK_InteractableObject
         base.Grabbed(currentGrabbingObject);
 
         hand = VRTK_ControllerReference.GetControllerReference(currentGrabbingObject.gameObject);
-        // Debug.Log(currentGrabbingObject.gameObject.name);
-
-        currentGrabbingObject.controllerEvents.TriggerPressed += Shoot;
         active = true;
         nextFrame = true;
     }
@@ -75,15 +54,6 @@ public class Gun : VRTK_InteractableObject
         base.Ungrabbed(previousGrabbingObject);
 
         hand = null;
-        previousGrabbingObject.controllerEvents.TriggerPressed -= Shoot;
         active = false;
     }
-    
-    void Shoot(object sender, ControllerInteractionEventArgs e)
-    {
-        // VRTK_ControllerHaptics.CancelHapticPulse(hand);
-        GameObject bul = Instantiate(bullet, firePoint.position, firePoint.rotation);
-        // VRTK_ControllerHaptics.TriggerHapticPulse(hand, shotStrength);
-    }
-    
 }

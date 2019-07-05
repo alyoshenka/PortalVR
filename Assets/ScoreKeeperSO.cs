@@ -13,12 +13,17 @@ public class ScoreKeeperSO : ScriptableObject
 
     public void Init()
     {
-        if (null == scoreListeners) { scoreListeners = new List<IScoreListener>(); }
-        if (null == Scores) { Scores = new List<int>(); }
+        if (null == scoreListeners)
+        {
+            scoreListeners = new List<IScoreListener>();
+            Scores = new List<int>();
+            currentScore = 0;
+        }
     }
 
     public void AddPoints(int points)
     {
+        Debug.Log("add");
         hasRecordedScore = true;
         currentScore += points;
         foreach (IScoreListener i in scoreListeners) { i.UpdateScore(currentScore); }

@@ -11,6 +11,8 @@ public class PickupObjectUI : MonoBehaviour
     [Tooltip("Can be null if Button is childed")]
     public Button button;
 
+    InventoryManager im;
+
     void Start()
     {
         if(null == button) { button = GetComponentInChildren<Button>(); }
@@ -19,11 +21,13 @@ public class PickupObjectUI : MonoBehaviour
         transform.Find("Name").GetComponent<Text>().text = obj.title;
         transform.Find("Cost").GetComponent<Text>().text = "$ " + obj.cost;
         transform.Find("Description").GetComponent<Text>().text = obj.description;
+
+        im = FindObjectOfType<InventoryManager>();
     }
 
     public void AddToInventory()
     {
-        InventoryManager.AddToInventory(this);
+        im.AddToInventory(this);
     }
 
     public void Disable()

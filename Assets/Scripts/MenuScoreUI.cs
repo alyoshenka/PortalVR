@@ -48,8 +48,7 @@ public class MenuScoreUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            sk.Scores.Add(sk.Scores.Count);
-            Start();
+            sk.Scores.Clear();
         }
     }
 }

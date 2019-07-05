@@ -10,9 +10,14 @@ public class LilHealth : PowerupObject
 
     public override void ApplyEffect()
     {
+        if (used) { return; }
+        used = true;
+
+        Explode();
+
         Player p = FindObjectOfType<Player>();
         p.RefillHealth((int)(p.maxHealth * healthRefillPercentage));
-        Explode();
+        Destroy(gameObject);
     }
 
     public override void ReverseEffect()

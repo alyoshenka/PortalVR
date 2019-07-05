@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5812271850658452589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4897564051559373479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa6b592ac8fff841ad647cd7cd81dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 1
+  stayGrabbedOnTeleport: 1
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 0}
+  secondaryGrabActionScript: {fileID: 0}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+  cost: 50
+  title: Grenade
+  description: Clears all enemies from the board
+  explosion: {fileID: 5732810906020268849, guid: d748f91ec44662c4881f77033385c4bd,
+    type: 3}
+  minY: -5
+  notSeenSeconds: 5
+  clearTime: 2
+--- !u!1001 &3600612931622884345
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4139445386019849029, guid: e00585a899de7d1468bab0770aed6e96,
+        type: 3}
+      propertyPath: title
+      value: Grenade
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139445386019849029, guid: e00585a899de7d1468bab0770aed6e96,
+        type: 3}
+      propertyPath: description
+      value: Clears the board of all enemies
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139445386019849029, guid: e00585a899de7d1468bab0770aed6e96,
+        type: 3}
+      propertyPath: cost
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139445386019849029, guid: e00585a899de7d1468bab0770aed6e96,
+        type: 3}
+      propertyPath: isGrabbable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214661292454316382, guid: e00585a899de7d1468bab0770aed6e96,
+        type: 3}
+      propertyPath: m_Name
+      value: ClearBoard
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214661292454316391, guid: e00585a899de7d1468bab0770aed6e96,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214661292454316391, guid: e00585a899de7d1468bab0770aed6e96,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1876
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214661292454316391, guid: e00585a899de7d1468bab0770aed6e96,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214661292454316391, guid: e00585a899de7d1468bab0770aed6e96,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214661292454316391, guid: e00585a899de7d1468bab0770aed6e96,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214661292454316391, guid: e00585a899de7d1468bab0770aed6e96,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214661292454316391, guid: e00585a899de7d1468bab0770aed6e96,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214661292454316391, guid: e00585a899de7d1468bab0770aed6e96,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214661292454316391, guid: e00585a899de7d1468bab0770aed6e96,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214661292454316391, guid: e00585a899de7d1468bab0770aed6e96,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214661292454316391, guid: e00585a899de7d1468bab0770aed6e96,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214661292454316377, guid: e00585a899de7d1468bab0770aed6e96,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e1df01ab00baa4f45b34baaee5dee85c, type: 2}
+    m_RemovedComponents:
+    - {fileID: 4139445386019849029, guid: e00585a899de7d1468bab0770aed6e96, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: e00585a899de7d1468bab0770aed6e96, type: 3}
+--- !u!1 &4897564051559373479 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8214661292454316382, guid: e00585a899de7d1468bab0770aed6e96,
+    type: 3}
+  m_PrefabInstance: {fileID: 3600612931622884345}
+  m_PrefabAsset: {fileID: 0}

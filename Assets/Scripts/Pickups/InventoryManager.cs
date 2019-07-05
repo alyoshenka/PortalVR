@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour, IScoreListener
-{
-    public int startingBalance;    
+{    
     public Text scoreText;
     public ScoreKeeperSO sk;
 
@@ -19,7 +18,7 @@ public class InventoryManager : MonoBehaviour, IScoreListener
     // Start is called before the first frame update
     void Start()
     {
-        Balance = startingBalance;
+        Balance = sk.Scores.Count > 0 ? sk.Scores[sk.Scores.Count - 1] : 0;
         sk.scoreListeners.Add(this);
         sk.hasRecordedScore = false;
         ScoreText = scoreText;
@@ -28,12 +27,31 @@ public class InventoryManager : MonoBehaviour, IScoreListener
        
         pg = FindObjectOfType<PickupGenerator>();
         possiblePickups = new List<PickupObjectUI>(GetComponentsInChildren<PickupObjectUI>());
+        // foreach(PickupObjectUI pui in possiblePickups) { pui.obj.IM = this; }
         possiblePickups.Sort();
         OrganizePickups();
+        Debug.Log("start");
+    }
+
+    void Update()
+    {
+        Balance = sk.Scores.Count > 0 ? sk.Scores[sk.Scores.Count - 1] : 0;
+        sk.scoreListeners.Add(this);
+        sk.hasRecordedScore = false;
+        ScoreText = scoreText;
+        ScoreText.text = "$ " + Balance;
+        inventory = new List<PickupObjectUI>();
+
+        pg = FindObjectOfType<PickupGenerator>();
+        possiblePickups = new List<PickupObjectUI>(GetComponentsInChildren<PickupObjectUI>());
+        // foreach(PickupObjectUI pui in possiblePickups) { pui.obj.IM = this; }
+        possiblePickups.Sort();
+        OrganizePickups();
+        Debug.Log("start");
     }
 
     // processing stage, update ui
-    static void OrganizePickups()
+    void OrganizePickups()
     {
         ScoreText.text = "$ " + Balance;
         for (int i = 0; i < possiblePickups.Count; i++)
@@ -43,11 +61,11 @@ public class InventoryManager : MonoBehaviour, IScoreListener
         }
     }
 
-    public static void AddToInventory(PickupObjectUI po)
+    public void AddToInventory(PickupObjectUI po)
     {
         inventory.Add(po);
         Balance -= po.obj.cost; // update ui, etc from there
-        OrganizePickups();
+        sk.AddPoints(-po.obj.cost); // this will update score
         pg.GeneratePickup(po);
     }
 

@@ -1,0 +1,163 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &274606216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470638689658531904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0a4c8089b91f747baf0d62ca0baa88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 0
+  stayGrabbedOnTeleport: 1
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 0}
+  secondaryGrabActionScript: {fileID: 0}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+  bullet: {fileID: 5471524611712054160, guid: dd91a378599924744bae7a244367c395, type: 3}
+  shotTime: 0.2
+  grabPos: {x: 0, y: 0.06, z: 0.07}
+  grabRot: {x: 0, y: -91.2, z: 0}
+  shotStrength: 1
+  fireSound: {fileID: 0}
+--- !u!1001 &1795047223494749923
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2189104103304617635, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: m_Name
+      value: AutomaticGun
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986381855687778258, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.134
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986381855687778258, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.265
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986381855687778258, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.348
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986381855687778258, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986381855687778258, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986381855687778258, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986381855687778258, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986381855687778258, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986381855687778258, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986381855687778258, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5986381855687778258, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 706532395253380284, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 706532395253380284, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 706532395253380284, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 706532395253380284, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 706532395253380284, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 706532395253380284, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.6068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5217599488414306456, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: disableWhenIdle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5217599488414306456, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: firingSpeed
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5217599488414306456, guid: 80aba2e508506734593c127f4897b70d,
+        type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 5471524611712054160, guid: dd91a378599924744bae7a244367c395,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 5217599488414306456, guid: 80aba2e508506734593c127f4897b70d, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 80aba2e508506734593c127f4897b70d, type: 3}
+--- !u!1 &470638689658531904 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2189104103304617635, guid: 80aba2e508506734593c127f4897b70d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1795047223494749923}
+  m_PrefabAsset: {fileID: 0}
