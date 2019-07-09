@@ -20,7 +20,6 @@ public class Sword : VRTK_InteractableObject
     VRTK_ControllerReference hand;
     AudioSource a;
 
-    // Start is called before the first frame update
     void Start()
     {
         active = false;

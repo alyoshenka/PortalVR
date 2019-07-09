@@ -30,7 +30,8 @@ public class MenuScoreUI : MonoBehaviour
 
         for(int i = 0; i < numTopScores && i < scores.Length; i++)
         {
-            GameObject newScore = Instantiate(scoreDisp, scoreDisp.GetComponent<RectTransform>().position, scoreDisp.transform.rotation, scoreDisp.transform.parent);
+            GameObject newScore = Instantiate(scoreDisp, scoreDisp.GetComponent<RectTransform>().position, 
+                scoreDisp.transform.rotation, scoreDisp.transform.parent);
             newScore.GetComponent<RectTransform>().localPosition += Vector3.down * spacing * i;
             Text t = newScore.GetComponent<Text>();
             t.text = scores[i] + "";
@@ -40,15 +41,6 @@ public class MenuScoreUI : MonoBehaviour
                 t.color = myScoreColor;
                 t.fontStyle = FontStyle.Bold;
             }
-        }
-    }
-
-    // test
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            sk.Scores.Clear();
         }
     }
 }

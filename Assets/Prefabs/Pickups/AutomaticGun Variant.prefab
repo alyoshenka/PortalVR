@@ -34,7 +34,7 @@ MonoBehaviour:
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
   bullet: {fileID: 5471524611712054160, guid: dd91a378599924744bae7a244367c395, type: 3}
-  shotTime: 0.2
+  shotTime: 0.1
   grabPos: {x: 0, y: 0.06, z: 0.07}
   grabRot: {x: 0, y: -91.2, z: 0}
   shotStrength: 1
@@ -49,12 +49,12 @@ PrefabInstance:
     - target: {fileID: 2189104103304617635, guid: 80aba2e508506734593c127f4897b70d,
         type: 3}
       propertyPath: m_Name
-      value: AutomaticGun
+      value: AutomaticGun Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5986381855687778258, guid: 80aba2e508506734593c127f4897b70d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.134
+      value: 0.275
       objectReference: {fileID: 0}
     - target: {fileID: 5986381855687778258, guid: 80aba2e508506734593c127f4897b70d,
         type: 3}
@@ -118,42 +118,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 706532395253380284, guid: 80aba2e508506734593c127f4897b70d,
         type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 706532395253380284, guid: 80aba2e508506734593c127f4897b70d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 706532395253380284, guid: 80aba2e508506734593c127f4897b70d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 706532395253380284, guid: 80aba2e508506734593c127f4897b70d,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.6068
       objectReference: {fileID: 0}
-    - target: {fileID: 5217599488414306456, guid: 80aba2e508506734593c127f4897b70d,
+    - target: {fileID: 706532395253380284, guid: 80aba2e508506734593c127f4897b70d,
         type: 3}
-      propertyPath: disableWhenIdle
-      value: 1
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 5217599488414306456, guid: 80aba2e508506734593c127f4897b70d,
-        type: 3}
-      propertyPath: firingSpeed
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5217599488414306456, guid: 80aba2e508506734593c127f4897b70d,
-        type: 3}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 5471524611712054160, guid: dd91a378599924744bae7a244367c395,
-        type: 3}
     m_RemovedComponents:
-    - {fileID: 5217599488414306456, guid: 80aba2e508506734593c127f4897b70d, type: 3}
+    - {fileID: -1810743862947520111, guid: 80aba2e508506734593c127f4897b70d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 80aba2e508506734593c127f4897b70d, type: 3}
 --- !u!1 &470638689658531904 stripped
 GameObject:

@@ -42,9 +42,7 @@ public class Enemy : DamageableEnity
     // holders
     Vector3 newPosition;
     AudioSource a;
-    // Rigidbody rb;
 
-    // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();       
@@ -57,9 +55,6 @@ public class Enemy : DamageableEnity
         goalPos = Vector3.zero;
         InPosition = false;
 
-        // rb = GetComponent<Rigidbody>();
-        // rb.useGravity = true;
-        // rb.isKinematic = false;
         gameObject.AddComponent<AudioSource>();
         a = GetComponent<AudioSource>();
         a.minDistance = 0;
