@@ -9,21 +9,16 @@ public class InventoryManager : MonoBehaviour, IScoreListener
     public ScoreKeeperSO sk;
 
     public static int Balance { get; private set; }
-    public static Text ScoreText;
 
-    static List<PickupObjectUI> inventory;
     static List<PickupObjectUI> possiblePickups;
     static PickupGenerator pg;
 
     // Start is called before the first frame update
     void Start()
     {
-        Balance = sk.Scores.Count > 0 ? sk.Scores[sk.Scores.Count - 1] : 0;
+        Balance = sk.Scores.Count > 0 ? sk.Scores[sk.Scores.Count - 1] : 0; // should always be 0
         sk.scoreListeners.Add(this);
         sk.hasRecordedScore = false;
-        ScoreText = scoreText;
-        ScoreText.text = "$ " + Balance;
-        inventory = new List<PickupObjectUI>();
        
         pg = FindObjectOfType<PickupGenerator>();
         possiblePickups = new List<PickupObjectUI>(GetComponentsInChildren<PickupObjectUI>());
@@ -35,15 +30,7 @@ public class InventoryManager : MonoBehaviour, IScoreListener
 
     void Update()
     {
-        Balance = sk.Scores.Count > 0 ? sk.Scores[sk.Scores.Count - 1] : 0;
-        sk.scoreListeners.Add(this);
-        sk.hasRecordedScore = false;
-        ScoreText = scoreText;
-        ScoreText.text = "$ " + Balance;
-        inventory = new List<PickupObjectUI>();
-
-        pg = FindObjectOfType<PickupGenerator>();
-        possiblePickups = new List<PickupObjectUI>(GetComponentsInChildren<PickupObjectUI>());
+        scoreText.text = "$ " + Balance;
         // foreach(PickupObjectUI pui in possiblePickups) { pui.obj.IM = this; }
         possiblePickups.Sort();
         OrganizePickups();
@@ -53,7 +40,9 @@ public class InventoryManager : MonoBehaviour, IScoreListener
     // processing stage, update ui
     void OrganizePickups()
     {
-        ScoreText.text = "$ " + Balance;
+        Debug.Log("Balance should be: " + Balance);
+        scoreText.text = "$ " + Balance;
+        Debug.Log("Text is: " + scoreText.text);
         for (int i = 0; i < possiblePickups.Count; i++)
         {
             if(possiblePickups[i].obj.cost <= Balance) { possiblePickups[i].Enable(); }
@@ -63,14 +52,15 @@ public class InventoryManager : MonoBehaviour, IScoreListener
 
     public void AddToInventory(PickupObjectUI po)
     {
-        inventory.Add(po);
-        Balance -= po.obj.cost; // update ui, etc from there
-        sk.AddPoints(-po.obj.cost); // this will update score
+        if(Balance < po.obj.cost) { return; }
+
         pg.GeneratePickup(po);
+        sk.AddPoints(-po.obj.cost); // this will update score
     }
 
     public void UpdateScore(int score)
     {
+        Debug.Log("updating im score");
         Balance = score;
         OrganizePickups();
     }

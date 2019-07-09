@@ -23,9 +23,9 @@ public class ScoreKeeperSO : ScriptableObject
 
     public void AddPoints(int points)
     {
-        Debug.Log("add");
         hasRecordedScore = true;
         currentScore += points;
+        Debug.Log("current score: " + currentScore);
         foreach (IScoreListener i in scoreListeners) { i.UpdateScore(currentScore); }
     }
 

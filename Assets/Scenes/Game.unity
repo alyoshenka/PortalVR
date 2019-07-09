@@ -257,7 +257,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &53703973
 Transform:
   m_ObjectHideFlags: 0
@@ -2713,7 +2713,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 9.1837e-41, w: -1.177e-42}
+  m_BoundingSphereOverride: {x: 1.6940658e-21, y: 0, z: 1.8e-43, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4537,7 +4537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 8312200334010105811, guid: 936b65a1c58ff244fb423f9e9156abe5, type: 3}
-  enemyCount: 10
+  enemyCount: 1
   spawnTime: 0.5
 --- !u!1001 &1378405645
 PrefabInstance:
@@ -7919,7 +7919,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1253474032641143073}
   m_Layer: 0
-  m_Name: Powerup
+  m_Name: PowerupExampleObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

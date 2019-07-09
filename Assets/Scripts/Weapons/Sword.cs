@@ -63,7 +63,7 @@ public class Sword : VRTK_InteractableObject
 
     public void OnTriggerEnter(Collider other)
     {
-        a.Play();
+        a?.Play();
     }
 
     public void OnTriggerExit(Collider other)
