@@ -202,4 +202,4 @@ MonoBehaviour:
     type: 3}
   minY: -5
   notSeenSeconds: 5
-  healthRefillPercentage: 0
+  healthRefillPercentage: 0.2

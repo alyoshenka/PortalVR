@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ScoreKeeper
   - LevelManager
+  - MirrorCam
   layers:
   - Default
   - TransparentFX

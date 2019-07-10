@@ -12,6 +12,7 @@ public class CameraSwitcher : MonoBehaviour
     void Start()
     {
         cams = new List<Camera>(GameObject.FindObjectsOfType<Camera>());
+        cams.RemoveAll(c => c.gameObject.CompareTag("MirrorCam"));
         foreach(Camera c in cams) { c.enabled = false; }
         cams.Add(vrCam);
         currentCam = cams.IndexOf(vrCam);

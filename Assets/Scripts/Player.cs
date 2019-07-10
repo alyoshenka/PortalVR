@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Player : DamageableEnity
 {
     public ScoreKeeperSO sk;
+    public GameObject head;
     public Image damageFlash;
     public Color damageColor;
     [Tooltip("The opacity of the flash at start")]
@@ -21,6 +22,12 @@ public class Player : DamageableEnity
     protected override void Start()
     {
         base.Start();
+
+        if(null == head && null != sk.Head)
+        {
+            head = Instantiate(sk.Head, transform);
+            GetComponent<Renderer>().enabled = false;
+        }
 
         damageFlash.color = damageColor;
         damageFlash.enabled = false;
@@ -63,5 +70,4 @@ public class Player : DamageableEnity
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         healthBar.fillAmount = 1.0f * currentHealth / maxHealth;
     }
-
 }
