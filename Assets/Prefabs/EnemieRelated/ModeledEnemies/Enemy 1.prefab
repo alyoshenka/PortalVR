@@ -121,8 +121,8 @@ MonoBehaviour:
   upSpeed: 5
   upMultiplier: 0.01
   fallTime: 0
-  fireSound: {fileID: 8300000, guid: 1e5725ff6f456274b86b44920d43be99, type: 3}
-  shotSound: {fileID: 8300000, guid: ebeae5a1f29de7c4e9ba45175e0a6e8d, type: 3}
+  fireSound: {fileID: 8300000, guid: c650a08b11235b84fa880b3775e0448f, type: 3}
+  shotSound: {fileID: 8300000, guid: 63f78716e88543d47b3aaebd34910b1c, type: 3}
   goalPos: {x: 0, y: 0, z: 0}
 --- !u!1001 &1358403621134570818
 PrefabInstance:

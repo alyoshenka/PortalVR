@@ -155,7 +155,7 @@ MonoBehaviour:
   usingState: 0
   bullet: {fileID: 5471524611712054160, guid: 8b4ac5292817609409b63e139f8c9d54, type: 3}
   firingSpeed: 0
-  grabPos: {x: -0.017, y: 0, z: 0.017}
+  grabPos: {x: 0.01, y: 0.05, z: 0.32}
   grabRot: {x: 90, y: -148, z: -148}
   shotStrength: 1
   fireSound: {fileID: 0}
@@ -229,7 +229,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281861741353102773}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.148, y: 1.22, z: 0.041}
+  m_LocalPosition: {x: -0.15, y: 1.62, z: 0.041}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1281861741299744257}

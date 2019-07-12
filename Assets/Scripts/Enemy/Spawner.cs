@@ -38,7 +38,7 @@ public class Spawner : MonoBehaviour
             Enemy.circlingEnemies.Add(e);
 
             spawnedCount++;
-            spawnTime = 0f;
+            spawnElapsed = 0f;
         }        
     }
 
