@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {   
     [Tooltip("The type of enemy to spawn")]
-    public Enemy enemy;
+    public List<Enemy> enemies;
     [Tooltip("The number of enemies to spawn")]
     public int enemyCount;
     [Tooltip("The rate at which to spawn enemies")]
@@ -34,7 +34,7 @@ public class Spawner : MonoBehaviour
         if (spawnElapsed >= spawnTime)
         {
             // Spawn();
-            Enemy e = Instantiate(enemy.gameObject, transform.position, Quaternion.identity).GetComponent<Enemy>();
+            Enemy e = Instantiate(enemies[Random.Range(0, enemies.Count)].gameObject, transform.position, Quaternion.identity).GetComponent<Enemy>();
             Enemy.circlingEnemies.Add(e);
 
             spawnedCount++;
