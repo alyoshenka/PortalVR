@@ -140,7 +140,10 @@ public class ArrangeState : EnemyState
     public override void OnEnter()
     {
         gm.Initialize(Enemy.enemies);
-        foreach(Gun g in GameObject.FindObjectsOfType<Gun>()) { g.bullet.GetComponent<Collider>().enabled = false; }
+
+        // this is how i was trying to fix early shooting problem
+        // foreach(Gun g in GameObject.FindObjectsOfType<Gun>()) { g.bullet.GetComponent<Collider>().enabled = false; }
+        // foreach (AutomaticGun g in GameObject.FindObjectsOfType<AutomaticGun>()) { g.bullet.GetComponent<Collider>().enabled = false; }
     }
 
     public override void OnUpdate()
@@ -150,7 +153,9 @@ public class ArrangeState : EnemyState
 
     public override void OnExit()
     {
-        foreach (Gun g in GameObject.FindObjectsOfType<Gun>()) { g.bullet.GetComponent<Collider>().enabled = true; }
+        // this is how i was trying to fix early shooting problem
+        // foreach (Gun g in GameObject.FindObjectsOfType<Gun>()) { g.bullet.GetComponent<Collider>().enabled = true; }
+        // foreach (AutomaticGun g in GameObject.FindObjectsOfType<AutomaticGun>()) { g.bullet.GetComponent<Collider>().enabled = true; }
     }
 
     public override bool ReadyForNextState()
@@ -171,6 +176,13 @@ public class FireState : EnemyState
     public override void OnEnter()
     {
         eam.Initialize();
+        foreach(Enemy e in Enemy.enemies)
+        {
+            foreach(Collider c in e.GetComponentsInChildren<Collider>())
+            {
+                c.enabled = true;
+            }
+        }
     }
 
     public override void OnUpdate()

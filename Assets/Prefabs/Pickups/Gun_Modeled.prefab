@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 706532395253380284}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1393036011643767303}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5709, y: -0.054, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.668, y: -0.054, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5986381855687778258}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &2189104103304617635
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,14 +40,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5986381855687778258}
   - component: {fileID: -7520013648404140290}
-  - component: {fileID: -1810743862947520111}
   - component: {fileID: 5064276979098711080}
-  - component: {fileID: 5217599488414306456}
   - component: {fileID: 8438612105712621356}
   - component: {fileID: 3195739272287297447}
   - component: {fileID: 1175931145323008177}
   - component: {fileID: 1048839315293577440}
-  m_Layer: 0
+  - component: {fileID: 274606216}
+  m_Layer: 9
   m_Name: Gun_Modeled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +62,7 @@ Transform:
   m_GameObject: {fileID: 2189104103304617635}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.7975124, y: 0.421, z: 3.119028}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 2204238792999447454}
   - {fileID: 706532395253380284}
@@ -86,39 +85,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-1810743862947520111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2189104103304617635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc2315305343a584e8758755b54117c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clipOnNearTouch: {fileID: 0}
-  strengthOnNearTouch: 0
-  durationOnNearTouch: 0
-  intervalOnNearTouch: 0.05
-  cancelOnNearUntouch: 1
-  clipOnTouch: {fileID: 0}
-  strengthOnTouch: 0
-  durationOnTouch: 0
-  intervalOnTouch: 0.05
-  cancelOnUntouch: 1
-  clipOnGrab: {fileID: 0}
-  strengthOnGrab: 0
-  durationOnGrab: 0
-  intervalOnGrab: 0.05
-  cancelOnUngrab: 1
-  clipOnUse: {fileID: 0}
-  strengthOnUse: 0
-  durationOnUse: 0
-  intervalOnUse: 0.05
-  cancelOnUnuse: 1
-  objectToAffect: {fileID: 0}
 --- !u!114 &5064276979098711080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,45 +105,6 @@ MonoBehaviour:
   objectToHighlight: {fileID: 0}
   objectHighlighter: {fileID: 0}
   objectToAffect: {fileID: 0}
---- !u!114 &5217599488414306456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2189104103304617635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51bcde0f8f3c73b4bbb0c645d586f9ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  disableWhenIdle: 1
-  allowedNearTouchControllers: 0
-  allowedTouchControllers: 0
-  ignoredColliders: []
-  isGrabbable: 1
-  holdButtonToGrab: 0
-  stayGrabbedOnTeleport: 1
-  validDrop: 1
-  grabOverrideButton: 0
-  allowedGrabControllers: 0
-  grabAttachMechanicScript: {fileID: 0}
-  secondaryGrabActionScript: {fileID: 0}
-  isUsable: 0
-  holdButtonToUse: 1
-  useOnlyIfGrabbed: 0
-  pointerActivatesUseAction: 0
-  useOverrideButton: 0
-  allowedUseControllers: 0
-  objectHighlighter: {fileID: 0}
-  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
-  usingState: 0
-  bullet: {fileID: 5471524611712054160, guid: 158b8db52cff77c4ba7cd6241d08c7ff, type: 3}
-  firingSpeed: 0
-  grabPos: {x: 0, y: 0.06, z: 0.07}
-  grabRot: {x: 0, y: -91.2, z: 0}
-  shotStrength: 1
-  fireSound: {fileID: 0}
 --- !u!114 &8438612105712621356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +161,45 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.41313708, y: 0.09795201, z: 0.12628984}
   m_Center: {x: 0.3215862, y: -0.046717465, z: 0.0010955334}
+--- !u!114 &274606216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2189104103304617635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0a4c8089b91f747baf0d62ca0baa88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 1
+  holdButtonToGrab: 0
+  stayGrabbedOnTeleport: 1
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 0}
+  secondaryGrabActionScript: {fileID: 0}
+  isUsable: 0
+  holdButtonToUse: 1
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
+  bullet: {fileID: 5471524611712054160, guid: dd91a378599924744bae7a244367c395, type: 3}
+  shotTime: 0.1
+  grabPos: {x: 0, y: 0.06, z: 0.07}
+  grabRot: {x: 0, y: -91.2, z: 0}
+  shotStrength: 1
+  fireSound: {fileID: 0}
 --- !u!1001 &6624147776421200004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -245,6 +211,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Point
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 8b6400167c06ad34d9c3f5fd434b53b8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7872797854874704240, guid: 8b6400167c06ad34d9c3f5fd434b53b8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317229575268802051, guid: 8b6400167c06ad34d9c3f5fd434b53b8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5277271839050369799, guid: 8b6400167c06ad34d9c3f5fd434b53b8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -6915671434651089321, guid: 8b6400167c06ad34d9c3f5fd434b53b8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9071503146471158392, guid: 8b6400167c06ad34d9c3f5fd434b53b8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 8b6400167c06ad34d9c3f5fd434b53b8,
         type: 3}
@@ -300,6 +296,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4505533449339279001, guid: 8b6400167c06ad34d9c3f5fd434b53b8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -421704605251644122, guid: 8b6400167c06ad34d9c3f5fd434b53b8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7930897278583421159, guid: 8b6400167c06ad34d9c3f5fd434b53b8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -1308404097910945737, guid: 8b6400167c06ad34d9c3f5fd434b53b8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -8124695078650543475, guid: 8b6400167c06ad34d9c3f5fd434b53b8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b6400167c06ad34d9c3f5fd434b53b8, type: 3}

@@ -35,6 +35,10 @@ public class Spawner : MonoBehaviour
         {
             // Spawn();
             Enemy e = Instantiate(enemies[Random.Range(0, enemies.Count)].gameObject, transform.position, Quaternion.identity).GetComponent<Enemy>();
+        
+            // this is how i am going to solve early shooting problem now
+            foreach(Collider c in e.GetComponentsInChildren<Collider>()) { c.enabled = false; }
+
             Enemy.circlingEnemies.Add(e);
 
             spawnedCount++;

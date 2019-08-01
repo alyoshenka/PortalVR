@@ -10,7 +10,6 @@ public class ScoreKeeperSO : ScriptableObject
     public List<int> Scores { get; private set; }
     public bool hasRecordedScore;
     int currentScore;
-    public GameObject Head { get; set; }
 
     public void Init()
     {
