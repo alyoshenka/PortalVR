@@ -30,7 +30,7 @@ public class HeadModel : VRTK_InteractableObject
         }
         else
         {
-            Destroy(HeadModelSetter.head);
+            Destroy(HeadModelSetter.head.gameObject);
         }
 
         GameObject h = Instantiate(gameObject, p.transform.position,
