@@ -8,36 +8,29 @@ using VRTK.Controllables;
 public class SceneSwitcher : MonoBehaviour
 {
     public ControllableReactor switchButton;
-    public bool toMenu;
+    // public bool toMenu;
     public bool initialization;
+
+    public string toScene;
 
     private void Start()
     {
         if (initialization)
         {
-            SwitchToMenu();
+            SwitchScene();
             return;
         }
-        if (toMenu) { switchButton.controllable.MaxLimitReached += SwitchToMenuListener; }
-        else { switchButton.controllable.MaxLimitReached += SwitchToGameListener; }
+        switchButton.controllable.MaxLimitReached += SwitchSceneListener;
     }
 
-    public void SwitchToMenu()
+    public void SwitchScene()
     {
-        // score
-        SceneManager.LoadScene("Menu");
-    }
-    void SwitchToGame()
-    {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(toScene);
+        
     }
 
-    void SwitchToMenuListener(object sender, ControllableEventArgs e)
+    void SwitchSceneListener(object sender, ControllableEventArgs e)
     {
-        SwitchToMenu();
-    }
-    void SwitchToGameListener(object sender, ControllableEventArgs e)
-    {
-        SwitchToGame();
+        SwitchScene();
     }
 }

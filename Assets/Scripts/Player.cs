@@ -33,13 +33,13 @@ public class Player : DamageableEnity
         damageFlash.enabled = false;
         GetComponent<SphereCollider>().radius = headRadius;
 
-        FindObjectOfType<HeadModelSetter>().StartTheThings();
+        // FindObjectOfType<HeadModelSetter>().StartTheThings();
     }
 
     public override void OnDeath()
     {
         sk.AddScore();
-        FindObjectOfType<SceneSwitcher>().SwitchToMenu();
+        FindObjectOfType<SceneSwitcher>().SwitchScene();
     }
 
     public override Explosion TakeDamage(int damage)
