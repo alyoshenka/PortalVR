@@ -42,10 +42,15 @@ public class Enemy : DamageableEnity
     // holders
     Vector3 newPosition;
     AudioSource a;
+    static Transform player;
 
     protected override void Start()
     {
-        base.Start();       
+        base.Start();   
+        
+        if(null == player) { player = GameObject.FindGameObjectWithTag("Player").transform; }
+        if(null == enemies) { Initialize(); }
+
         enemies.Add(this);
 
         shotElapsed = fallElapsed = 0f;
@@ -66,6 +71,8 @@ public class Enemy : DamageableEnity
 
     public static void Initialize()
     {
+        Debug.Log("enemy initialized");
+
         if (null == enemies) { enemies = new List<Enemy>(); }
         else { enemies.Clear(); }
         if (null == circlingEnemies) { circlingEnemies = new List<Enemy>(); }
@@ -81,7 +88,7 @@ public class Enemy : DamageableEnity
     public void Shoot()
     {
         GameObject bul = Instantiate(bullet, transform.position, Quaternion.identity);
-        bul.transform.LookAt(GameObject.FindGameObjectWithTag("Player").transform);
+        bul.transform.LookAt(player);
         a.clip = fireSound;
         a.Play();
     }

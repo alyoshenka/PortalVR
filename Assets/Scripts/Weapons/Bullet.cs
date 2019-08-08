@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        IDamageable dam = other.gameObject.GetComponent<IDamageable>();
+        IDamageable dam = other.gameObject.GetComponentInParent<IDamageable>(); // camp 2
         if(null != dam)
         {
             Explosion otherExpl = dam.TakeDamage(damage);

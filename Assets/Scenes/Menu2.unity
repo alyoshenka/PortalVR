@@ -7035,8 +7035,6 @@ GameObject:
   - component: {fileID: 285497066560043482}
   - component: {fileID: 285497066560043301}
   - component: {fileID: 285497066560043300}
-  - component: {fileID: 285497066560043303}
-  - component: {fileID: 8148943695443599978}
   m_Layer: 13
   m_Name: enemy 2
   m_TagString: Untagged
@@ -7044,19 +7042,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &285497066560043303
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 285497066560043302}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &285497066560043482
 Transform:
   m_ObjectHideFlags: 0
@@ -12041,19 +12026,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &667864765675728557
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359376577254558168}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &668829652440498790
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -12848,19 +12820,6 @@ Transform:
   m_Father: {fileID: 2487102226936255462}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &734067332853170421
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8557573981197734689}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &734631467946197932
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20989,37 +20948,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3647861053138404299}
   m_Mesh: {fileID: -6278941419895177439, guid: 552042b76f0d82d4497c12a7a718d23f, type: 3}
---- !u!114 &1293326625055098959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123894441145145986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 251f1737ff4e4cb45880179ac0331208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 50
-  hitEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
-    type: 3}
-  deathEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
-    type: 3}
-  sk: {fileID: 11400000, guid: 5b61a186535354c4da37acd63265cb8a, type: 2}
-  points: 20
-  target: {fileID: 0}
-  bullet: {fileID: 5471524611712054160, guid: b34401348660f544e98636026a7a1f41, type: 3}
-  type: 0
-  speed: 30
-  shotTimer: 1
-  radius: 0
-  upSpeed: 5
-  upMultiplier: 0.01
-  fallTime: 0
-  fireSound: {fileID: 8300000, guid: c650a08b11235b84fa880b3775e0448f, type: 3}
-  shotSound: {fileID: 8300000, guid: 63f78716e88543d47b3aaebd34910b1c, type: 3}
-  goalPos: {x: 0, y: 0, z: 0}
 --- !u!23 &1293702762117938869
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21904,8 +21832,6 @@ GameObject:
   - component: {fileID: 6486050478164181065}
   - component: {fileID: 2472546677161794437}
   - component: {fileID: 5595749362982749973}
-  - component: {fileID: 667864765675728557}
-  - component: {fileID: 8103638600510325594}
   m_Layer: 13
   m_Name: enemy 5
   m_TagString: Untagged
@@ -27195,19 +27121,6 @@ Transform:
   m_Father: {fileID: 6714504889631753204}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1790230595443831481
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4795278587746363132}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1791031198470740566
 Transform:
   m_ObjectHideFlags: 0
@@ -29463,8 +29376,6 @@ GameObject:
   - component: {fileID: 1402305865735351215}
   - component: {fileID: 2311443777450541474}
   - component: {fileID: 1242172937463088819}
-  - component: {fileID: 7220689259127563638}
-  - component: {fileID: 7997299568662004353}
   m_Layer: 13
   m_Name: enemy 1
   m_TagString: Untagged
@@ -31431,37 +31342,6 @@ Transform:
   m_Father: {fileID: 2811608585257004029}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2079667711258428549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5515303536956394277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 251f1737ff4e4cb45880179ac0331208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 50
-  hitEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
-    type: 3}
-  deathEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
-    type: 3}
-  sk: {fileID: 11400000, guid: 5b61a186535354c4da37acd63265cb8a, type: 2}
-  points: 20
-  target: {fileID: 0}
-  bullet: {fileID: 5471524611712054160, guid: b34401348660f544e98636026a7a1f41, type: 3}
-  type: 0
-  speed: 30
-  shotTimer: 1
-  radius: 0
-  upSpeed: 5
-  upMultiplier: 0.01
-  fallTime: 0
-  fireSound: {fileID: 8300000, guid: c650a08b11235b84fa880b3775e0448f, type: 3}
-  shotSound: {fileID: 8300000, guid: 63f78716e88543d47b3aaebd34910b1c, type: 3}
-  goalPos: {x: 0, y: 0, z: 0}
 --- !u!4 &2080033912459982872
 Transform:
   m_ObjectHideFlags: 0
@@ -31959,8 +31839,6 @@ GameObject:
   - component: {fileID: 7314794217670045480}
   - component: {fileID: 3360368669541658311}
   - component: {fileID: 6600945176196705861}
-  - component: {fileID: 4470352920231190144}
-  - component: {fileID: 1293326625055098959}
   m_Layer: 13
   m_Name: enemy 4
   m_TagString: Untagged
@@ -45170,37 +45048,6 @@ Transform:
   m_Father: {fileID: 919121239936489516}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3076518640660107835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4795278587746363132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 251f1737ff4e4cb45880179ac0331208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 50
-  hitEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
-    type: 3}
-  deathEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
-    type: 3}
-  sk: {fileID: 11400000, guid: 5b61a186535354c4da37acd63265cb8a, type: 2}
-  points: 20
-  target: {fileID: 0}
-  bullet: {fileID: 5471524611712054160, guid: b34401348660f544e98636026a7a1f41, type: 3}
-  type: 0
-  speed: 30
-  shotTimer: 1
-  radius: 0
-  upSpeed: 5
-  upMultiplier: 0.01
-  fallTime: 0
-  fireSound: {fileID: 8300000, guid: c650a08b11235b84fa880b3775e0448f, type: 3}
-  shotSound: {fileID: 8300000, guid: 63f78716e88543d47b3aaebd34910b1c, type: 3}
-  goalPos: {x: 0, y: 0, z: 0}
 --- !u!4 &3077282961555440163
 Transform:
   m_ObjectHideFlags: 0
@@ -59197,37 +59044,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &4087758077598287312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8557573981197734689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 251f1737ff4e4cb45880179ac0331208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 50
-  hitEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
-    type: 3}
-  deathEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
-    type: 3}
-  sk: {fileID: 11400000, guid: 5b61a186535354c4da37acd63265cb8a, type: 2}
-  points: 20
-  target: {fileID: 0}
-  bullet: {fileID: 5471524611712054160, guid: b34401348660f544e98636026a7a1f41, type: 3}
-  type: 0
-  speed: 30
-  shotTimer: 1
-  radius: 0
-  upSpeed: 5
-  upMultiplier: 0.01
-  fallTime: 0
-  fireSound: {fileID: 8300000, guid: c650a08b11235b84fa880b3775e0448f, type: 3}
-  shotSound: {fileID: 8300000, guid: 63f78716e88543d47b3aaebd34910b1c, type: 3}
-  goalPos: {x: 0, y: 0, z: 0}
 --- !u!23 &4089587645320582457
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -65482,19 +65298,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &4470352920231190144
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123894441145145986}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &4470780463111122377
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -69937,8 +69740,6 @@ GameObject:
   - component: {fileID: 1531062187069173281}
   - component: {fileID: 6300832074105983079}
   - component: {fileID: 4241085407850744057}
-  - component: {fileID: 1790230595443831481}
-  - component: {fileID: 3076518640660107835}
   m_Layer: 13
   m_Name: enemy 6
   m_TagString: Untagged
@@ -80532,19 +80333,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &5515303536956394276
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5515303536956394277}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5515303536956394277
 GameObject:
   m_ObjectHideFlags: 0
@@ -80556,8 +80344,6 @@ GameObject:
   - component: {fileID: 5515303536956394281}
   - component: {fileID: 5515303536956394282}
   - component: {fileID: 5515303536956394283}
-  - component: {fileID: 5515303536956394276}
-  - component: {fileID: 2079667711258428549}
   m_Layer: 13
   m_Name: enemy
   m_TagString: Untagged
@@ -104332,19 +104118,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &7220689259127563638
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938779274445264404}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &7220913980405708694
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -115307,37 +115080,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &7997299568662004353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938779274445264404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 251f1737ff4e4cb45880179ac0331208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 50
-  hitEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
-    type: 3}
-  deathEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
-    type: 3}
-  sk: {fileID: 11400000, guid: 5b61a186535354c4da37acd63265cb8a, type: 2}
-  points: 20
-  target: {fileID: 0}
-  bullet: {fileID: 5471524611712054160, guid: b34401348660f544e98636026a7a1f41, type: 3}
-  type: 0
-  speed: 30
-  shotTimer: 1
-  radius: 0
-  upSpeed: 5
-  upMultiplier: 0.01
-  fallTime: 0
-  fireSound: {fileID: 8300000, guid: c650a08b11235b84fa880b3775e0448f, type: 3}
-  shotSound: {fileID: 8300000, guid: 63f78716e88543d47b3aaebd34910b1c, type: 3}
-  goalPos: {x: 0, y: 0, z: 0}
 --- !u!4 &7999562914894165357
 Transform:
   m_ObjectHideFlags: 0
@@ -116950,37 +116692,6 @@ Transform:
   m_Father: {fileID: 5215090697052144894}
   m_RootOrder: 166
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8103638600510325594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359376577254558168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 251f1737ff4e4cb45880179ac0331208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 50
-  hitEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
-    type: 3}
-  deathEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
-    type: 3}
-  sk: {fileID: 11400000, guid: 5b61a186535354c4da37acd63265cb8a, type: 2}
-  points: 20
-  target: {fileID: 0}
-  bullet: {fileID: 5471524611712054160, guid: b34401348660f544e98636026a7a1f41, type: 3}
-  type: 0
-  speed: 30
-  shotTimer: 1
-  radius: 0
-  upSpeed: 5
-  upMultiplier: 0.01
-  fallTime: 0
-  fireSound: {fileID: 8300000, guid: c650a08b11235b84fa880b3775e0448f, type: 3}
-  shotSound: {fileID: 8300000, guid: 63f78716e88543d47b3aaebd34910b1c, type: 3}
-  goalPos: {x: 0, y: 0, z: 0}
 --- !u!33 &8106132289827283995
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -117503,37 +117214,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &8148943695443599978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 285497066560043302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 251f1737ff4e4cb45880179ac0331208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 50
-  hitEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
-    type: 3}
-  deathEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
-    type: 3}
-  sk: {fileID: 11400000, guid: 5b61a186535354c4da37acd63265cb8a, type: 2}
-  points: 20
-  target: {fileID: 0}
-  bullet: {fileID: 5471524611712054160, guid: b34401348660f544e98636026a7a1f41, type: 3}
-  type: 0
-  speed: 30
-  shotTimer: 1
-  radius: 0
-  upSpeed: 5
-  upMultiplier: 0.01
-  fallTime: 0
-  fireSound: {fileID: 8300000, guid: c650a08b11235b84fa880b3775e0448f, type: 3}
-  shotSound: {fileID: 8300000, guid: 63f78716e88543d47b3aaebd34910b1c, type: 3}
-  goalPos: {x: 0, y: 0, z: 0}
 --- !u!1 &8149601263112742026
 GameObject:
   m_ObjectHideFlags: 0
@@ -123083,8 +122763,6 @@ GameObject:
   - component: {fileID: 5035023767786643400}
   - component: {fileID: 6800039645705398127}
   - component: {fileID: 4054457209312394143}
-  - component: {fileID: 734067332853170421}
-  - component: {fileID: 4087758077598287312}
   m_Layer: 13
   m_Name: enemy 3
   m_TagString: Untagged

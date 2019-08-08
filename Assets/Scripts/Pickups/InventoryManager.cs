@@ -21,21 +21,21 @@ public class InventoryManager : MonoBehaviour, IScoreListener
        
         pg = FindObjectOfType<PickupGenerator>();
         possiblePickups = new List<PickupObjectUI>(GetComponentsInChildren<PickupObjectUI>());
-        possiblePickups.Sort();
+        // possiblePickups.Sort();
         OrganizePickups();
     }
 
     void Update()
     {
         scoreText.text = "$ " + balance;
-        possiblePickups.Sort();
+        // possiblePickups.Sort();
         OrganizePickups();
     }
 
     // processing stage, update ui
     void OrganizePickups()
     {
-        scoreText.text = "$ " + balance;
+        if (null != scoreText) { scoreText.text = "$ " + balance; }
         for (int i = 0; i < possiblePickups.Count; i++)
         {
             if(possiblePickups[i].obj.cost <= balance) { possiblePickups[i].Enable(); }

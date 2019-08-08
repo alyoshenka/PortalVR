@@ -37,7 +37,7 @@ public class PickupObjectUI : MonoBehaviour
 
     public void Enable()
     {
-        button.interactable = true;
+        if (null != button) { button.interactable = true; }
     }
 
 }
