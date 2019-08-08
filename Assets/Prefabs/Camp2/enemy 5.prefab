@@ -767,7 +767,6 @@ GameObject:
   - component: {fileID: 986199992995640722}
   - component: {fileID: 7086405030836103426}
   - component: {fileID: 2790917604157128890}
-  - component: {fileID: 6884323699822800205}
   m_Layer: 13
   m_Name: enemy 5
   m_TagString: Untagged
@@ -848,37 +847,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6884323699822800205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4405248836756105167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 251f1737ff4e4cb45880179ac0331208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 50
-  hitEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
-    type: 3}
-  deathEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
-    type: 3}
-  sk: {fileID: 11400000, guid: 5b61a186535354c4da37acd63265cb8a, type: 2}
-  points: 20
-  target: {fileID: 0}
-  bullet: {fileID: 5471524611712054160, guid: b34401348660f544e98636026a7a1f41, type: 3}
-  type: 0
-  speed: 30
-  shotTimer: 1
-  radius: 0
-  upSpeed: 5
-  upMultiplier: 0.01
-  fallTime: 0
-  fireSound: {fileID: 8300000, guid: c650a08b11235b84fa880b3775e0448f, type: 3}
-  shotSound: {fileID: 8300000, guid: 63f78716e88543d47b3aaebd34910b1c, type: 3}
-  goalPos: {x: 0, y: 0, z: 0}
 --- !u!1 &4692584663589198939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1428,7 +1396,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2895803931373977461}
-  m_Layer: 0
+  - component: {fileID: 7147920044788908516}
+  m_Layer: 13
   m_Name: enemy 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1450,6 +1419,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7147920044788908516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6985535015110948580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 251f1737ff4e4cb45880179ac0331208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 50
+  hitEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
+    type: 3}
+  deathEffect: {fileID: 9203809615773987291, guid: 5ae5c6810202f4a4c98da2b0f567b981,
+    type: 3}
+  sk: {fileID: 11400000, guid: 5b61a186535354c4da37acd63265cb8a, type: 2}
+  points: 20
+  target: {fileID: 0}
+  bullet: {fileID: 5471524611712054160, guid: b34401348660f544e98636026a7a1f41, type: 3}
+  type: 0
+  speed: 30
+  shotTimer: 1
+  radius: 0
+  upSpeed: 5
+  upMultiplier: 0.01
+  fallTime: 0
+  fireSound: {fileID: 8300000, guid: c650a08b11235b84fa880b3775e0448f, type: 3}
+  shotSound: {fileID: 8300000, guid: 63f78716e88543d47b3aaebd34910b1c, type: 3}
+  goalPos: {x: 0, y: 0, z: 0}
 --- !u!1 &7075644910532513842
 GameObject:
   m_ObjectHideFlags: 0
