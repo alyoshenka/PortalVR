@@ -10209,7 +10209,7 @@ PrefabInstance:
     - target: {fileID: 7912217462709638573, guid: 15ebb9ed2976f474399e321a96262c2a,
         type: 3}
       propertyPath: toScene
-      value: Game1
+      value: Game2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15ebb9ed2976f474399e321a96262c2a, type: 3}
