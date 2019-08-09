@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nearTouchHighlight: {r: 0, g: 0, b: 0, a: 0}
-  touchHighlight: {r: 0, g: 0, b: 0, a: 0}
+  touchHighlight: {r: 0.5424528, g: 1, b: 0.91989076, a: 0.4745098}
   grabHighlight: {r: 0, g: 0, b: 0, a: 0}
   useHighlight: {r: 0, g: 0, b: 0, a: 0}
   objectToMonitor: {fileID: 0}

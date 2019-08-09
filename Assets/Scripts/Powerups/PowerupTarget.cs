@@ -6,7 +6,7 @@ public class PowerupTarget : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        PowerupObject p = other.GetComponent<PowerupObject>();
+        PowerupObject p = other.GetComponentInParent<PowerupObject>(); // camp 2
         if(null != p) { p.ApplyEffect(); }
     }
 }
